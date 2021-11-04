@@ -1,0 +1,46 @@
+a {
+    padding: 5px;
+    margin: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    background-color: rgb(255, 248, 254);
+    border-radius: 5px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 248, 254, 0.5);
+    padding: 10px;
+  }
+
+ .profile-dropdown{
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 7px;
+      margin-right: 800px;
+      border-radius: 10px;
+      background-color: rgb(255, 248, 254);
+  }
+  .profile-button{
+    appearance: auto;
+    -webkit-writing-mode: horizontal-tb !important;
+    color: none;
+    padding: 5px;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: rgb(255, 248, 254);
+    padding: 4px 10px;
+    border-width: 2px;
+    border-style: none;
+    border-color: none ;
+
+}
