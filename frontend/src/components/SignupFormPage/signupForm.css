@@ -19,3 +19,8 @@ body{
     padding-top: 25px;
     background-color: rgb(255, 248, 254, 0.5);
 }
+
+h2{
+    color: rgb(58, 24, 50);
+    margin-bottom: 0px;
+}
