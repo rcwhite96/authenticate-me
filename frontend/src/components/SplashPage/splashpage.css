@@ -1,0 +1,20 @@
+
+.logo-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 200px;
+    margin-right: 70px;
+    flex-direction: column;
+}
+
+.splash-logo{
+    max-width: 1000px;
+
+}
+
+.h2{
+    margin: 0px 0px 0px 200px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
