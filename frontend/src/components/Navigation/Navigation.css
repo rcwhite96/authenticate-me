@@ -17,14 +17,16 @@ ul {
     padding: 0;
     background-color: rgb(255, 248, 254, 0.5);
     padding: 10px;
+
   }
 
  .profile-dropdown{
       font-family: Arial, Helvetica, sans-serif;
       margin-top: 7px;
-      margin-right: 800px;
+      margin-right: 0px;
       border-radius: 10px;
       background-color: rgb(255, 248, 254);
+      margin-left: 1600px;
   }
   .profile-button{
     appearance: auto;
@@ -42,5 +44,14 @@ ul {
     border-width: 2px;
     border-style: none;
     border-color: none ;
+    margin-left: 1600px;
 
+}
+
+.logout-button{
+    background-color: thistle;
+}
+
+.logout-button:hover{
+    background-color: rgb(235, 215, 235);
 }

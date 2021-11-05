@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import logo from '../../yarniconwhite.png'
 import './splashpage.css'
 
