@@ -42,7 +42,7 @@ if (!isProduction) {
 const routes = require('./routes');
 app.use(routes);
 
-// Catch unhandled requests and forward to error handler.
+// This will catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
@@ -51,7 +51,7 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-// Process sequelize errors
+// This will process sequelize errors
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
   if (err instanceof ValidationError) {
