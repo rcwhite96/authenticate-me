@@ -89,12 +89,12 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
   User.associate = function (models) {
-    User.hasMany(model.Notebook, {
+    User.hasMany(models.Notebook, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',
       hooks: true
     });
-    User.hasMany(model.Note,{
+    User.hasMany(models.Note,{
       foreignKey: 'userId',
       onDelete: 'CASCADE',
       hooks: true
