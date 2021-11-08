@@ -1,14 +1,19 @@
-
-// import './notebooks.css'
-import { useSelector } from 'react-redux';
+import React from 'react'
+import {useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook } from '../../store/notebooks';
 
+import './notebooks.css'
+
 function NotebooksList() {
-    const arr = useSelector(getAllNotebook)
+    const notebooks = useSelector(state => Object.values(state.notebook));
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAllNotebook())
+    }, [dispatch])
     return(
         <>
             <h2 className="notebook_title">Notes</h2>
-            {!arr.length && <span>No notebooks. Create one to get started!</span>}
                 <ul className="notebook-list">
 
                 </ul>
@@ -16,3 +21,4 @@ function NotebooksList() {
     )
 }
 
+export default NotebooksList

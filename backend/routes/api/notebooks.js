@@ -10,11 +10,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { db } = require('../../config');
 
 //GET ALL NOTEBOOKS
-router.get('/notebooks', asyncHandler(async (req, res) => {
-    const notebooks = await db.Notebook.findAll({
+router.get('/', asyncHandler(async (req, res) => {
+    const notebooks = await Notebook.findAll({
         order: [['updatedAt']]
     })
-    return res.json({notebooks})
+    console.log(notebooks)
+    return res.json(notebooks)
 }))
 
 //GET ONE NOTEBOOK
