@@ -1,4 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import {}
+
+import { NavLink } from 'react-router-dom';
+// import {getOne} from '../../store/notebooks'
+
+const NotebookDetail = ({id, title}) => {
+    return (
+        <li>
+            <NavLink to={`/notebooks/${id}`}>{title}</NavLink>
+        </li>
+    )
+}
+
+export default NotebookDetail

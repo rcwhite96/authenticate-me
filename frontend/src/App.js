@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AboutPage from './components/AboutPage'
 import NotebooksList from "./components/Notebooks";
+import CreateNotebook from './components/CreateNotebooks'
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/notebooks">
             <NotebooksList/>
+          </Route>
+          <Route path='/notebooks/new'>
+            <CreateNotebook/>
           </Route>
         </Switch>
       )}

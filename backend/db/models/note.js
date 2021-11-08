@@ -1,7 +1,5 @@
 'use strict';
 
-const { default: Notebooks } = require("../../../frontend/src/components/Notebooks");
-
 module.exports = (sequelize, DataTypes) => {
   const Note = sequelize.define('Note', {
     userId: DataTypes.INTEGER,
