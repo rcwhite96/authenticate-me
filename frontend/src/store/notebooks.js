@@ -1,5 +1,8 @@
 const ADD_NOTEBOOK = 'notebook/addNotebook'
 const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
+
+// const GET_ONE_NOTEBOOK = 'notebook/getOneNotebook'
+
 // const REMOVE_NOTEBOOK = 'notebook/removeNotebook'
 
 
@@ -10,12 +13,17 @@ const getAllNotebooks = payload => {
     }
 }
 
+// const getOneNotebook = notebook => ({
+//     type: GET_ONE_NOTEBOOK,
+//     notebook
+// })
 const addNotebooks = payload => {
     return {
         type: ADD_NOTEBOOK,
         payload
     }
 }
+
 
 // const removeNotebook = id =>{
 //     return{type: REMOVE_NOTEBOOK,
@@ -29,7 +37,6 @@ export const getAllNotebook = () => async dispatch => {
         dispatch(getAllNotebooks(data.notebooks))
     }
 }
-
 export const addNotebook = notebook => async dispatch => {
     const res = await fetch('/api/notebooks', {
         method: 'POST',
@@ -41,7 +48,6 @@ export const addNotebook = notebook => async dispatch => {
         dispatch(addNotebooks(data.notebook))
     }
 }
-
 // export const deleteNotebook = id => async dispatch => {
 //     const res = await fetch(`api/notebooks/${id}`, {
 //         method: 'DELETE'
@@ -59,6 +65,11 @@ const notebookReducer = (state = {}, action) =>{
             return newState;
         case GET_ALL_NOTEBOOKS:
             action.notebook.forEach(notebook=>{
+                newState[notebook.id] = notebook
+            })
+            return newState
+        case GET_ALL_NOTEBOOKS:
+            action.notebook.forEach(notebook => {
                 newState[notebook.id] = notebook
             })
             return newState

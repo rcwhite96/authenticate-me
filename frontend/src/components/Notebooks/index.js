@@ -1,13 +1,18 @@
-// import {useSelector} from 'react-redux';
-// import {getAllNotebooks} from '../../store/notebooks'
 
-// function Notebooks() {
-//     return(
-//         <>
-//             <h2 className="notebook_title">Notes</h2>
-//             <div className="notebooks_container"></div>
-//         </>
-//     )
-// }
+// import './notebooks.css'
+import { useSelector } from 'react-redux';
+import { getAllNotebook } from '../../store/notebooks';
 
-// export default Notebooks
+function NotebooksList() {
+    const arr = useSelector(getAllNotebook)
+    return(
+        <>
+            <h2 className="notebook_title">Notes</h2>
+            {!arr.length && <span>No notebooks. Create one to get started!</span>}
+                <ul className="notebook-list">
+
+                </ul>
+        </>
+    )
+}
+

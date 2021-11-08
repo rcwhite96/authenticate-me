@@ -7,7 +7,7 @@ import SplashPage from "./components/SplashPage"
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AboutPage from './components/AboutPage'
-import Notebooks from "./components/Notebooks";
+import NotebooksList from "./components/Notebooks";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function App() {
             <AboutPage/>
           </Route>
           <Route path="/notebooks">
-            <Notebooks/>
+            <NotebooksList/>
           </Route>
         </Switch>
       )}
