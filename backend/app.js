@@ -40,6 +40,7 @@ if (!isProduction) {
 
 //ROUTES
 const routes = require('./routes');
+const notebookRoutes = require('./routes/api/notebooks')
 app.use(routes);
 
 // This will catch unhandled requests and forward to error handler.

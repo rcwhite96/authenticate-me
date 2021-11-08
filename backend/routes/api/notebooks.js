@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const csurf = require('csurf');
+const router = express.Router();
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Notebook, Note } = require('../../db/models');
