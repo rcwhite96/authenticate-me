@@ -1,14 +1,14 @@
 const ADD_NOTEBOOK = 'notebook/addNotebook'
-// const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
+const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
 // const REMOVE_NOTEBOOK = 'notebook/removeNotebook'
 
 
-// const getAllNotebooks = payload => {
-//     return{
-//         type: GET_ALL_NOTEBOOKS,
-//         payload
-//     }
-// }
+const getAllNotebooks = payload => {
+    return{
+        type: GET_ALL_NOTEBOOKS,
+        payload
+    }
+}
 
 const addNotebooks = payload => {
     return {
@@ -22,13 +22,13 @@ const addNotebooks = payload => {
 //         payload: id }
 // }
 
-// export const getAllNotebook = () => async dispatch => {
-//     const res = await fetch('/api/notebooks')
-//     if(res.ok) {
-//         const data = await res.json()
-//         dispatch(getAllNotebooks(data.notebooks))
-//     }
-// }
+export const getAllNotebook = () => async dispatch => {
+    const res = await fetch('/api/notebooks')
+    if(res.ok) {
+        const data = await res.json()
+        dispatch(getAllNotebooks(data.notebooks))
+    }
+}
 
 export const addNotebook = notebook => async dispatch => {
     const res = await fetch('/api/notebooks', {
@@ -56,6 +56,11 @@ const notebookReducer = (state = {}, action) =>{
     switch(action.type) {
         case ADD_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload};
+            return newState;
+        case GET_ALL_NOTEBOOKS:
+            action.notebook.forEach(notebook=>{
+                newState[notebook.id] = notebook
+            })
             return newState
     default:
         return state
