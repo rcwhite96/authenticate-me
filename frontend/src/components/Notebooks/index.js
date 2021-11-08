@@ -16,4 +16,3 @@ function NotebooksList() {
     )
 }
 
-export default NotebooksList
