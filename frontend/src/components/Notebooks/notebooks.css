@@ -20,3 +20,25 @@
     padding-top: 25px;
     background-color: rgb(255, 248, 254, 0.5);
 }
+
+.notebooks-links{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    min-width: 300px;
+    background-color: rgb(255, 248, 254);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 7px;
+}
+
+.notebook-links:hover{
+    background-color: rgb(235, 215, 235);
+}
+
+.add-notebook{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}

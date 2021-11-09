@@ -7,12 +7,12 @@ const GET_ONE_NOTEBOOK = 'notebook/getOneNotebook'
 // const REMOVE_NOTEBOOK = 'notebook/removeNotebook'
 
 
-// const getAllNotebooks = payload => {
-//     return{
-//         type: GET_ALL_NOTEBOOKS,
-//         payload
-//     }
-// }
+const getAllNotebooks = payload => {
+    return{
+        type: GET_ALL_NOTEBOOKS,
+        payload
+    }
+}
 
 const getOneNotebook = notebook => ({
     type: GET_ONE_NOTEBOOK,
@@ -36,7 +36,7 @@ export const getAllNotebook = () => async dispatch => {
     if(res.ok) {
         const data = await res.json()
         console.log(data)
-        // dispatch(getAllNotebooks(data))
+        dispatch(getAllNotebooks(data))
     }
 }
 
@@ -75,9 +75,7 @@ const notebookReducer = (state = {}, action) =>{
             newState={...state, [action.payload.id]: action.notebook};
             return newState;
         case GET_ALL_NOTEBOOKS:
-            action.notebook.forEach(notebook=>{
-                newState[notebook.id] = notebook
-            })
+            newState.notebooks = action.payload
             return newState
     default:
         return state
