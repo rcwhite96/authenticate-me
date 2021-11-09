@@ -16,21 +16,38 @@ const CreateNotebook = () => {
         return <Redirect to="/login" />;
       }
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const notebook = await dispatch(addNotebook(title)).catch(async (res) =>{
+    //         const data = await res.json()
+    //         if(data && data.errors){
+    //             const filteredErr= data.errors.filter(
+    //                 (error) => error !== 'Invalid value'
+    //             )
+    //             setErrors(filteredErr)
+    //         }
+    //     })
+    //     if(notebook){
+    //         history.push(`/notebooks`)
+    //     }
+    // }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const notebook = await dispatch(addNotebook(title)).catch(async (res) =>{
-            const data = await res.json()
-            if(data && data.errors){
-                const filteredErr= data.errors.filter(
-                    (error) => error !== 'Invalid value'
-                )
-                setErrors(filteredErr)
-            }
-        })
-        if(notebook){
-            history.push(`/notebooks`)
+        setErrors([]);
+        const notebook = await dispatch(addNotebook(title)).catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            const filteredErrors = data.errors.filter(
+              (error) => error !== 'Invalid value'
+            );
+            setErrors(filteredErrors);
+          }
+        });
+        if (notebook) {
+          history.push('/');
         }
-    }
+      };
 
     return (
         <>

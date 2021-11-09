@@ -24,11 +24,12 @@
 .notebooks-links{
     display: flex;
     flex-direction:column;
-    align-items: center;
-    min-width: 300px;
+    align-items: flex-start;
+    min-width: 400px;
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 5px;
+    padding-left: 10px;
     font-size: 20px;
     margin: 7px;
 }
