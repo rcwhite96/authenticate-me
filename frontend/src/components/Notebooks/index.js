@@ -7,11 +7,13 @@ import './notebooks.css'
 
 function NotebooksList() {
     const notebooks = useSelector(state => Object.values(state.notebook));
-    console.log(notebooks)
+    // console.log(notebooks)
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
+    console.log(notebooks)
 
 //TypeError: cannot convert undefined or null into an object(line 9)
 
@@ -19,11 +21,13 @@ function NotebooksList() {
         <>
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
-                    {notebooks?.map(notebook => (
+                    {notebooks && notebooks.map(notebook => (
                         <div key={notebook.id}>
                             does this work?
                         </div>
+                        // console.log(notebooks)
                     ))}
+
                 </div>
         </>
     )
