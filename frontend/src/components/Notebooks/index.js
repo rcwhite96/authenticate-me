@@ -6,7 +6,7 @@ import { getAllNotebook } from '../../store/notebooks';
 import './notebooks.css'
 
 function NotebooksList() {
-    const notebooks = useSelector(state => Object.values(state.notebook));
+    // const notebooks = useSelector(state => Object.values(state.notebook));
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllNotebook())
@@ -15,7 +15,7 @@ function NotebooksList() {
         <>
             <h2 className="notebook_title">Notes</h2>
                 <ul className="notebook-list">
-
+            
                 </ul>
         </>
     )
