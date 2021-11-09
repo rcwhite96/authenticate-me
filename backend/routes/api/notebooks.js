@@ -50,7 +50,7 @@ const validateNotebook = [
   ];
 
 //ADD NEW NOTEBOOK
-router.post('/', restoreUser, validateNotebook, asyncHandler(async (req, res, next) =>{
+router.post('/new', restoreUser, validateNotebook, asyncHandler(async (req, res, next) =>{
     const{title} = req.body
     const{user}= req
     if(!user){

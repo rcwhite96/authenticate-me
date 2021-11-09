@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook } from '../../store/notebooks';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 import './notebooks.css'
 
@@ -14,21 +14,23 @@ function NotebooksList() {
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
-    console.log("RW", notebooks)
-
-//TypeError: cannot convert undefined or null into an object(line 9)
+    // console.log("RW", notebooks)
 
     return(
         <>
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
                     {notebooks?.map(({id, title}) => (
-                        <Link className="notebooks-links" to="/notebooks/:id" key={id}>
+                        <NavLink className="notebooks-links" to="/notebooks/:id" key={id}>
                             {title}
-                        </Link>
+                        </NavLink>
                         // console.log(notebooks)
                     ))}
-                    <button className="add-notebook">Add a Notebook</button>
+                    <button className="add-notebook">
+                        <NavLink to="/new-notebook">
+                        Add a Notebook
+                        </NavLink>
+                    </button>
                 </div>
         </>
     )
