@@ -1,10 +1,8 @@
 const {csrfFetch} = require('./csrf')
 const ADD_NOTEBOOK = 'notebook/addNotebook'
 const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
-
 const GET_ONE_NOTEBOOK = 'notebook/getOneNotebook'
-
-// const REMOVE_NOTEBOOK = 'notebook/removeNotebook'
+const REMOVE_NOTEBOOK = 'notebook/remove'
 
 
 const getAllNotebooks = payload => {
@@ -19,23 +17,23 @@ const getOneNotebook = notebook => ({
     notebook
 })
 
-const addNotebooks = payload => {
+const add = payload => {
     return {
         type: ADD_NOTEBOOK,
         payload
     }
 }
 
-// const removeNotebook = id =>{
-//     return{type: REMOVE_NOTEBOOK,
-//         payload: id }
-// }
+const remove = notebookId =>{
+    return{type: REMOVE_NOTEBOOK,
+        payload: notebookId }
+}
 
 export const getAllNotebook = () => async dispatch => {
     const res = await csrfFetch('/api/notebooks')
     if(res.ok) {
         const data = await res.json()
-        console.log(data)
+        // console.log(data)
         dispatch(getAllNotebooks(data))
     }
 }
@@ -48,34 +46,38 @@ export const getOne = (id) => async dispatch =>{
     }
 }
 
-export const addNotebook = notebook => async dispatch => {
-    const res = await fetch('/api/notebooks/notebooks', {
+export const addNotebook = (title) => async dispatch => {
+    const res = await csrfFetch('/api/notebooks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(notebook)
+        body: JSON.stringify({title})
     })
     if(res.ok){
-        const data = await res.json()
-        dispatch(addNotebooks(data.notebook))
+        const notebook = await res.json()
+        dispatch(add(notebook))
     }
 }
-// export const deleteNotebook = id => async dispatch => {
-//     const res = await fetch(`api/notebooks/${id}`, {
-//         method: 'DELETE'
-//     })
-//     if (res.ok){
-//         dispatch(removeNotebook(id))
-//     }
-// }
+export const deleteNotebook = id => async dispatch => {
+    const res = await csrfFetch(`api/notebooks/${id}`, {
+        method: 'DELETE'
+    })
+    if (res.ok){
+        dispatch(remove(id))
+    }
+}
 
 const notebookReducer = (state = {}, action) =>{
     let newState = {}
     switch(action.type) {
         case ADD_NOTEBOOK:
-            newState={...state, [action.payload.id]: action.notebook};
+            newState={...state, [action.notebooks.id]: action.notebooks};
             return newState;
         case GET_ALL_NOTEBOOKS:
             newState.notebooks = action.payload
+            return newState
+        case REMOVE_NOTEBOOK:
+            newState={...state}
+            delete newState[action.notebookId]
             return newState
     default:
         return state

@@ -37,7 +37,7 @@ function App() {
           <Route path="/notebooks">
             <NotebooksList/>
           </Route>
-          <Route path='/notebooks/new'>
+          <Route path='/new-notebook'>
             <CreateNotebook/>
           </Route>
         </Switch>
