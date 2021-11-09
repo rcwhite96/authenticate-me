@@ -7,7 +7,7 @@
     font-size: 35px;
 }
 
-.notebooks_container{
+.notebook-list{
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -15,7 +15,7 @@
     border-radius: 10px;
     margin-left: 200px;
     margin-right: 200px;
-    margin-top: 40px;
+    margin-top: 30px;
     padding-bottom: 600px;
     padding-top: 25px;
     background-color: rgb(255, 248, 254, 0.5);
