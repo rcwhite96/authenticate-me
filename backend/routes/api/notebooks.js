@@ -1,16 +1,27 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const csurf = require('csurf');
+const { restoreUser } = require('../../utils/auth');
+
 const router = express.Router();
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Notebook, Note } = require('../../db/models');
+const { Notebook } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { db } = require('../../config');
+
+const notebookError = (message) => {
+    const err = new Error(message);
+    err.status = 401;
+    err.title = 'failed';
+    err.errors = [message];
+    return err;
+  };
 
 //GET ALL NOTEBOOKS
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
+    const {user} = req
+    if(!user){
+        return next(notebookError('Must be logged in to see notebooks'))
+    }
     const notebooks = await Notebook.findAll({
         order: [['updatedAt']]
     })
@@ -19,29 +30,55 @@ router.get('/', asyncHandler(async (req, res) => {
 }))
 
 //GET ONE NOTEBOOK
-router.get('/notebooks/:id(\\d+)', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
+    const {user} = req
+    if(!user){
+        return next(notebookError('Must be logged in to see notebooks'))
+    }
     const notebook = await Notebook.findByPk(req.params.id)
     return res.json({notebook})
 }))
 
+const validateNotebook = [
+    check('title')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .withMessage('Your notebook must have a title')
+      .isLength({ max: 250 })
+      .withMessage('Title cannot be more than 250 characters long'),
+    handleValidationErrors,
+  ];
+
 //ADD NEW NOTEBOOK
-router.post('notebooks/new', asyncHandler(async (req, res) =>{
+router.post('/', restoreUser, validateNotebook, asyncHandler(async (req, res, next) =>{
     const{title} = req.body
-    const newNotebook = await Notebook.create({title})
-    return res.json({newNotebook})
+    const{user}= req
+    if(!user){
+        return next(notebookError('Must be logged in to create a notebook'))
+    }
+    const newNotebook = await Notebook.create({ userId: user.dataValues.id, title})
+    return res.json(newNotebook)
 }))
 
 //EDIT NOTEBOOK
-router.get('/notebooks/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    const notebook = await Notebook.findByPk(req.params.id)
-    if(notebook){
-        notebook.title = req.body.title
-        return res.json({notebook})
+router.put('/:id(\\d+)', restoreUser, validateNotebook, asyncHandler(async (req, res, next) => {
+    const notebookUpdate = await Notebook.findByPk(req.params.id)
+    const { user } = req;
+    if (!user) {
+      return next(fetchNotesError('You must be logged in to edit a notebook'));
     }
+    const notebook = { title, userId: user.dataValues.id };
+    await notebookUpdate.update(notebook);
+    return res.json(notebookUpdate)
+
 }))
 
 //DELETE NOTEBOOK
-router.get('/notebooks/:id(\\d+)', asyncHandler(async (req, res, next) => {
+router.delete('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
+    const { user } = req;
+    if (!user) {
+      return next(fetchNotesError('You must be logged in to delete a notebook'));
+    }
     const notebook = await Notebook.findByPk(req.params.id)
     await notebook.destroy();
     res.status(204).end()
