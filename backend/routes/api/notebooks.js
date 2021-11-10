@@ -36,7 +36,7 @@ router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
         return next(notebookError('Must be logged in to see notebooks'))
     }
     const notebook = await Notebook.findByPk(req.params.id)
-    return res.json({notebook})
+    return res.json(notebook)
 }))
 
 const validateNotebook = [
@@ -50,7 +50,7 @@ const validateNotebook = [
   ];
 
 //ADD NEW NOTEBOOK
-router.post('/new', restoreUser, validateNotebook, asyncHandler(async (req, res, next) =>{
+router.post('/', restoreUser, validateNotebook, asyncHandler(async (req, res, next) =>{
     const{title} = req.body
     const{user}= req
     if(!user){

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
-import { addNotebook } from '../../store/notebooks';
+import { useHistory, Redirect, useParams } from 'react-router-dom';
+import { editNotebook } from '../../store/notebooks';
 
-import './notebookform.css'
-
-const CreateNotebook = () => {
+const EditNotebook = () => {
+    const {notebookId} = useParams()
     const sessionUser = useSelector((state => state.session.user))
     const [title, setTitle] = useState('');
     const dispatch = useDispatch();
@@ -16,11 +15,10 @@ const CreateNotebook = () => {
         return <Redirect to="/login" />;
       }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        const notebook = await dispatch(addNotebook(title)).catch(async (res) => {
+        const notebook = await dispatch(editNotebook(notebookId)).catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
             const filteredErrors = data.errors.filter(
@@ -36,7 +34,7 @@ const CreateNotebook = () => {
 
     return (
         <>
-            <h2 className="add-notebook-header">Add a Notebook</h2>
+            <h2 className="edit-notebook-header">Edit Notebook</h2>
                 <form onSubmit={handleSubmit} className="add-notebook-form">
                 <div className="error-div">
                     <p className="user-form-errors">
@@ -51,11 +49,11 @@ const CreateNotebook = () => {
                         placeholder="untitled notebook"
                         value={title}/>
                     <button className='submit-button' type="submit">
-                        Add Notebook
+                        Edit Notebook
                     </button>
                 </form>
         </>
     )
 }
 
-export default CreateNotebook
+export default EditNotebook

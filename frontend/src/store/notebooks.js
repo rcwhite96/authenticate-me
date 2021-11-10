@@ -3,6 +3,7 @@ const ADD_NOTEBOOK = 'notebook/addNotebook'
 const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
 const GET_ONE_NOTEBOOK = 'notebook/getOneNotebook'
 const REMOVE_NOTEBOOK = 'notebook/remove'
+const UPDATE_NOTEBOOK = 'notebook/edit'
 
 
 const getAllNotebooks = payload => {
@@ -12,7 +13,7 @@ const getAllNotebooks = payload => {
     }
 }
 
-const getOneNotebook = notebook => ({
+const getOne = notebook => ({
     type: GET_ONE_NOTEBOOK,
     notebook
 })
@@ -29,6 +30,13 @@ const remove = notebookId =>{
         payload: notebookId }
 }
 
+const update = payload => {
+    return {
+        type: UPDATE_NOTEBOOK,
+        payload
+    }
+}
+
 export const getAllNotebook = () => async dispatch => {
     const res = await csrfFetch('/api/notebooks')
     if(res.ok) {
@@ -38,11 +46,11 @@ export const getAllNotebook = () => async dispatch => {
     }
 }
 
-export const getOne = (id) => async dispatch =>{
-    const res = await fetch(`/api/notebooks/notebooks/${id}`)
+export const getOneNotebook = (id) => async dispatch =>{
+    const res = await fetch(`/api/notebooks/${id}`)
     if (res.ok){
         const notebook = await res.json()
-        dispatch(getOneNotebook(notebook))
+        dispatch(getOne(notebook))
     }
 }
 
@@ -55,8 +63,22 @@ export const addNotebook = (title) => async dispatch => {
     if(res.ok){
         const notebook = await res.json()
         dispatch(add(notebook))
+        return notebook
     }
 }
+
+export const editNotebook = (id, title) => async (dispatch) => {
+    const res = await csrfFetch(`api/notebooks/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({title})
+    })
+    if(res.ok){
+        const notebook = await res.json()
+        dispatch(update(notebook))
+    }
+}
+
 export const deleteNotebook = id => async dispatch => {
     const res = await csrfFetch(`api/notebooks/${id}`, {
         method: 'DELETE'
@@ -70,10 +92,16 @@ const notebookReducer = (state = {}, action) =>{
     let newState = {}
     switch(action.type) {
         case ADD_NOTEBOOK:
-            newState={...state, [action.notebooks.id]: action.notebooks};
+            newState={...state, [action.payload.id]: action.payload};
             return newState;
         case GET_ALL_NOTEBOOKS:
             newState.notebooks = action.payload
+            return newState
+        case GET_ONE_NOTEBOOK:
+            newState= {...state, [action.payload.id]: action.payload}
+            return newState
+        case UPDATE_NOTEBOOK:
+            newState={...state, [action.payload.id]: action.payload}
             return newState
         case REMOVE_NOTEBOOK:
             newState={...state}

@@ -9,6 +9,10 @@ import Navigation from "./components/Navigation";
 import AboutPage from './components/AboutPage'
 import NotebooksList from "./components/Notebooks";
 import CreateNotebook from './components/CreateNotebooks'
+import EditNotebook from './components/EditNotebooks'
+
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +43,9 @@ function App() {
           </Route>
           <Route path='/new-notebook'>
             <CreateNotebook/>
+          </Route>
+          <Route path='/edit-notebook'>
+            <EditNotebook/>
           </Route>
         </Switch>
       )}
