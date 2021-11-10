@@ -36,7 +36,7 @@ const CreateNotebook = () => {
 
     return (
         <>
-            <h2 className="add-notebook-header">Add a Notebook</h2>
+            <h2 className="edit-notebook-header">Add a Notebook</h2>
                 <form onSubmit={handleSubmit} className="add-notebook-form">
                 <div className="error-div">
                     <p className="user-form-errors">

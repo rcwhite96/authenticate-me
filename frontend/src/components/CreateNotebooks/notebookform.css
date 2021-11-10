@@ -12,7 +12,7 @@
     background-color: rgb(255, 248, 254, 0.5);
 }
 
-.add-notebook-header{
+.edit-notebook-header{
     display: flex;
     flex-direction: row;
     justify-content: center;
