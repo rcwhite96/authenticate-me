@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/rcwhite96/authenticate-me/issues"
   },
-  "homepage": "https://github.com/rcwhite96/authenticate-me#readme"
+  "homepage": "https://github.com/rcwhite96/authenticate-me#readme",
+  "dependencies": {
+    "sequelize": "^6.9.0"
+  }
 }
