@@ -23,23 +23,30 @@
 
 .notebooks-links{
     display: flex;
-    flex-direction:column;
-    align-items: flex-start;
-    min-width: 400px;
+    flex-direction:row;
+    align-items:center;
+    justify-content: flex-end;
+    min-width: 300px;
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 5px;
-    padding-left: 10px;
     font-size: 20px;
     margin: 7px;
 }
 
-.notebook-links:hover{
-    background-color: rgb(235, 215, 235);
-}
-
-.add-notebook-option{
+.add-notebook{
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    background-color: rgb(255, 248, 254);
+}
+
+.edit-button{
+    margin-left: 65px;
+    background-color: thistle;
+    margin-right: 3px;
+}
+
+.delete-button{
+    background-color: thistle
 }
