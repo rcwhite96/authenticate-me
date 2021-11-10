@@ -82,7 +82,7 @@ router.delete('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => 
     }
     const notebook = await Notebook.findByPk(req.params.id)
     await notebook.destroy();
-    res.status(204).end()
+    return res.json({message: "Notebook sucessfully deleted."})
 }))
 
 module.exports = router
