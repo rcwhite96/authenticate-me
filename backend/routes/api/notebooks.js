@@ -62,27 +62,29 @@ router.post('/', restoreUser, validateNotebook, asyncHandler(async (req, res, ne
 
 //EDIT NOTEBOOK
 router.put('/:id(\\d+)', restoreUser, validateNotebook, asyncHandler(async (req, res, next) => {
-    const notebookUpdate = await Notebook.findByPk(req.params.id)
-    const {title} = req.body
-    const { user } = req;
-    if (!user) {
-      return next(fetchNotesError('You must be logged in to edit a notebook'));
-    }
-    const notebook = { title, userId: user.dataValues.id };
-    await notebookUpdate.update(notebook);
-    return res.json(notebookUpdate)
+  const notebookUpdate = await Notebook.findByPk(req.params.id)
+  const {title} = req.body
+  const { user } = req;
+  if (!user) {
+    return next(fetchNotesError('You must be logged in to edit a notebook'));
+  }
+  const notebook = { title, userId: user.dataValues.id };
+  await notebookUpdate.update(notebook);
+  return res.json(notebookUpdate)
 
+  
 }))
 
 //DELETE NOTEBOOK
 router.delete('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
-    const { user } = req;
-    if (!user) {
-      return next(fetchNotesError('You must be logged in to delete a notebook'));
-    }
-    const notebook = await Notebook.findByPk(req.params.id)
-    await notebook.destroy();
-    return res.json({message: "Notebook sucessfully deleted."})
+  const { user } = req;
+  if (!user) {
+    return next(fetchNotesError('You must be logged in to delete a notebook'));
+  }
+  const notebook = await Notebook.findByPk(req.params.id)
+  await notebook.destroy();
+  return res.json({message: "Notebook sucessfully deleted."})
+
 }))
 
 module.exports = router
