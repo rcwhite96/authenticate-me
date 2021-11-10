@@ -30,7 +30,6 @@ ul {
   }
   .profile-button{
     appearance: auto;
-    -webkit-writing-mode: horizontal-tb !important;
     color: none;
     padding: 5px;
     display: inline-block;
