@@ -44,7 +44,7 @@ function App() {
           <Route path='/new-notebook'>
             <CreateNotebook/>
           </Route>
-          <Route path='/edit-notebook'>
+          <Route path='/edit-notebook/:notebookId'>
             <EditNotebook/>
           </Route>
         </Switch>

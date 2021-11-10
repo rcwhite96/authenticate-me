@@ -68,7 +68,7 @@ export const addNotebook = (title) => async dispatch => {
 }
 
 export const editNotebook = (id, title) => async (dispatch) => {
-    const res = await csrfFetch(`api/notebooks/${id}`, {
+    const res = await csrfFetch(`/api/notebooks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({title})
@@ -80,7 +80,7 @@ export const editNotebook = (id, title) => async (dispatch) => {
 }
 
 export const deleteNotebook = id => async dispatch => {
-    const res = await csrfFetch(`api/notebooks/${id}`, {
+    const res = await csrfFetch(`/api/notebooks/${id}`, {
         method: 'DELETE'
     })
     if (res.ok){

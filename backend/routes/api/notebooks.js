@@ -63,6 +63,7 @@ router.post('/', restoreUser, validateNotebook, asyncHandler(async (req, res, ne
 //EDIT NOTEBOOK
 router.put('/:id(\\d+)', restoreUser, validateNotebook, asyncHandler(async (req, res, next) => {
     const notebookUpdate = await Notebook.findByPk(req.params.id)
+    const {title} = req.body
     const { user } = req;
     if (!user) {
       return next(fetchNotesError('You must be logged in to edit a notebook'));
