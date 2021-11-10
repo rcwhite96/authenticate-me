@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     });
     Note.belongsTo(models.Notebook, {
-      foreignKey:' notebookId'
+      foreignKey:'notebookId'
     })
   };
   return Note;
