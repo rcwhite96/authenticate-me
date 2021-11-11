@@ -7,7 +7,7 @@ import './noteform.css'
 
 const CreateNote = () => {
     const sessionUser = useSelector((state => state.session.user))
-    const notebooks = useSelector(state => state.notebooks);
+    const notebooks = useSelector(state => Object.values(state.notebooks));
     const [showNotebooks, setShowNotebooks] = useState(notebooks[0]);
     // const {notebookId} = useParams()
     const [title, setTitle] = useState('');
@@ -30,7 +30,8 @@ const CreateNote = () => {
             setShowNotebooks(notebooks[0]);
         }
       }, [notebooks, showNotebooks]);
-   
+      console.log(notebooks)
+
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
@@ -62,11 +63,6 @@ const CreateNote = () => {
                             <span key={i}>{error}</span>
                         ))}
                     </p>
-                    <select className="notebook-categories" onChange={updateNotebook} value={showNotebooks}>
-                        {notebooks.map(notebook =>
-                            <option key={notebook}>{notebook}</option>
-                                )}
-                    </select>
                  </div>
                     Title:
                     <input
@@ -74,6 +70,12 @@ const CreateNote = () => {
                         className="title-input"
                         placeholder="untitled notebook"
                         value={title}/>
+                    Notebook:
+                    <select className="notebook-categories" onChange={updateNotebook} value={showNotebooks}>
+                        {notebooks.map(notebook =>
+                            <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
+                                )}
+                    </select>
                     Hook Size:
                     <input
                         onChange ={(e) => setHookSize(e.target.value)}
