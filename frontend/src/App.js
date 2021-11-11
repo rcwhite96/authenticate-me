@@ -10,6 +10,7 @@ import AboutPage from './components/AboutPage'
 import NotebooksList from "./components/Notebooks";
 import CreateNotebook from './components/CreateNotebooks'
 import EditNotebook from './components/EditNotebooks'
+import NotesList from "./components/Notes";
 
 
 
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path='/edit-notebook/:notebookId'>
             <EditNotebook/>
+          </Route>
+          <Route path= '/notes'>
+            <NotesList/>
           </Route>
         </Switch>
       )}
