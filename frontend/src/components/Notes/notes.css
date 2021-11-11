@@ -52,7 +52,11 @@
     margin-bottom: 0px;
     font-size: 18px;
 }
-
+.needle-size{
+    margin: 5px;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
 .yarn{
     margin:5px;
     margin-bottom: 10px;

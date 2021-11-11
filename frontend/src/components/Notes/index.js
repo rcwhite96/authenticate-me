@@ -36,7 +36,7 @@ function NotesList() {
                                 Hook Size: {hookSize}
                             </div>
                             <div className="needle-size">
-                                {needleSize}
+                                Needle Size: {needleSize}
                             </div>
                             <div className="yarn">
                                 Yarn: {yarn}
