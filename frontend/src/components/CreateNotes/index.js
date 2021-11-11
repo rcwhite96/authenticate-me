@@ -8,7 +8,8 @@ import './noteform.css'
 const CreateNote = () => {
     const sessionUser = useSelector((state => state.session.user))
     const notebooks = useSelector(state => Object.values(state.notebooks));
-    const [showNotebooks, setShowNotebooks] = useState(notebooks[0]);
+    console.log(notebooks)
+    const [showNotebooks, setShowNotebooks] = useState('');
     // const {notebookId} = useParams()
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')
@@ -27,7 +28,7 @@ const CreateNote = () => {
 
     useEffect(() => {
         if (notebooks.length && !showNotebooks) {
-            setShowNotebooks(notebooks[0]);
+            setShowNotebooks(notebooks[0].id);
         }
       }, [notebooks, showNotebooks]);
       console.log(notebooks)
@@ -39,7 +40,7 @@ const CreateNote = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
-        const note = await dispatch(addNote(title, hookSize, needleSize, yarn, description)).catch(async (res) => {
+        const note = await dispatch(addNote(showNotebooks, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) {
                 const filteredErrors = data.errors.filter(
