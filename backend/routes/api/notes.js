@@ -50,12 +50,12 @@ const validateNote = [
 
 //ADD NEW NOTE
 router.post('/', restoreUser, validateNote, asyncHandler(async (req, res, next) =>{
-    const{title} = req.body
+    const{title, hookSize, needleSize, yarn, description} = req.body
     const{user}= req
     if(!user){
         return next(noteError('Must be logged in to create a note'))
     }
-    const newNote = await Note.create({ userId: user.dataValues.id, title})
+    const newNote = await Note.create({ userId: user.dataValues.id, title, hookSize, needleSize, yarn, description})
     return res.json(newNote)
 }))
 
