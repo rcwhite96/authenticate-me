@@ -9,7 +9,7 @@ import './notebooks.css'
 function NotebooksList() {
     const notebooks = useSelector(state => state.notebooks);
     const dispatch = useDispatch()
-    //const history = useHistory()
+
 
 
     useEffect(() => {
@@ -18,14 +18,8 @@ function NotebooksList() {
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
-        window.location.reload();
-        //return history.push('/notebooks')
+        // window.location.reload();
       };
-
-    // const handleEdit = (id) => {
-    //     dispatch(editNotebook(id))
-    //     // history.push('/notebooks')
-    // }
 
     const sessionUser= useSelector(state => state.session.user)
     if(!sessionUser) {

@@ -2,8 +2,8 @@ const {csrfFetch} = require('./csrf')
 const ADD_NOTEBOOK = 'notebook/addNotebook'
 const GET_ALL_NOTEBOOKS ='notebook/getAllNotebook'
 const GET_ONE_NOTEBOOK = 'notebook/getOneNotebook'
-const REMOVE_NOTEBOOK = 'notebook/remove'
-const UPDATE_NOTEBOOK = 'notebook/edit'
+const REMOVE_NOTEBOOK = 'notebook/deleteNotebook'
+const UPDATE_NOTEBOOK = 'notebook/editNotebook'
 
 
 const getAllNotebooks = payload => {
@@ -27,7 +27,7 @@ const add = payload => {
 
 const remove = notebookId =>{
     return{type: REMOVE_NOTEBOOK,
-        payload: notebookId }
+         payload: notebookId }
 }
 
 const update = payload => {
@@ -79,7 +79,7 @@ export const editNotebook = (id, title) => async (dispatch) => {
     }
 }
 
-export const deleteNotebook = id => async dispatch => {
+export const deleteNotebook = (id) => async dispatch => {
     const res = await csrfFetch(`/api/notebooks/${id}`, {
         method: 'DELETE'
     })
@@ -107,7 +107,7 @@ const notebookReducer = (state = {}, action) =>{
             return newState
         case REMOVE_NOTEBOOK:
             newState={...state}
-            delete newState[action.notebookId]
+            delete newState[action.payload]
             return newState
     default:
         return state
@@ -115,5 +115,3 @@ const notebookReducer = (state = {}, action) =>{
 }
 
 export default notebookReducer
-
-// test
