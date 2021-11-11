@@ -43,7 +43,7 @@ export const getNotes = () => async dispatch => {
 }
 
 export const addNote = (notebookId, title, hookSize, needleSize, yarn, description) => async dispatch => {
-    const res = await csrfFetch('/api/notes', {
+    const res = await csrfFetch(`/api/notes/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({notebookId, title, hookSize, needleSize, yarn, description})

@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, Redirect, useParams } from 'react-router-dom';
+import { useHistory, Redirect} from 'react-router-dom';
 import { addNote } from '../../store/notes';
+import { getAllNotebook } from '../../store/notebooks';
 import './noteform.css'
 
 const CreateNote = () => {
     const sessionUser = useSelector((state => state.session.user))
-    const {notebookId} = useParams()
+    const notebooks = useSelector(state => state.notebooks);
+    const [showNotebooks, setShowNotebooks] = useState(notebooks[0]);
+    // const {notebookId} = useParams()
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')
     const [needleSize, setNeedleSize] = useState('')
@@ -16,6 +19,18 @@ const CreateNote = () => {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
 
+    const updateNotebook = (e) => setShowNotebooks(e.target.value);
+
+    useEffect(() => {
+        dispatch(getAllNotebook())
+    }, [dispatch])
+
+    useEffect(() => {
+        if (notebooks.length && !showNotebooks) {
+            setShowNotebooks(notebooks[0]);
+        }
+      }, [notebooks, showNotebooks]);
+   
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
@@ -23,7 +38,7 @@ const CreateNote = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
-        const note = await dispatch(addNote(notebookId, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
+        const note = await dispatch(addNote(title, hookSize, needleSize, yarn, description)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) {
                 const filteredErrors = data.errors.filter(
@@ -47,6 +62,11 @@ const CreateNote = () => {
                             <span key={i}>{error}</span>
                         ))}
                     </p>
+                    <select className="notebook-categories" onChange={updateNotebook} value={showNotebooks}>
+                        {notebooks.map(notebook =>
+                            <option key={notebook}>{notebook}</option>
+                                )}
+                    </select>
                  </div>
                     Title:
                     <input
