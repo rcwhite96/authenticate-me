@@ -30,7 +30,7 @@ const CreateNotebook = () => {
           }
         });
         if (notebook) {
-          history.push('/notebooks');
+          return history.push('/notebooks');
         }
       };
 

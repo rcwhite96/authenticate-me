@@ -95,8 +95,10 @@ const notebookReducer = (state = {}, action) =>{
             newState={...state, [action.payload.id]: action.payload};
             return newState;
         case GET_ALL_NOTEBOOKS:
-            newState.notebooks = action.payload
-            return newState
+            action.payload.forEach(notebook => {
+                 newState[notebook.id] = notebook;
+            })
+            return newState;
         case GET_ONE_NOTEBOOK:
             newState= {...state, [action.payload.id]: action.payload}
             return newState

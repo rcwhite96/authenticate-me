@@ -1,15 +1,15 @@
 import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllNotebook, deleteNotebook, editNotebook } from '../../store/notebooks';
-import {NavLink, Redirect, useHistory} from 'react-router-dom'
+import { getAllNotebook, deleteNotebook } from '../../store/notebooks';
+import {NavLink, Redirect} from 'react-router-dom'
 
 import './notebooks.css'
 
 function NotebooksList() {
-    const notebooks = useSelector(state => state.notebooks?.notebooks);
+    const notebooks = useSelector(state => state.notebooks);
     const dispatch = useDispatch()
-    const history = useHistory()
+    // const history = useHistory()
 
 
     useEffect(() => {
@@ -18,14 +18,14 @@ function NotebooksList() {
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
-        history.push('/notebooks')
+        // history.push('/notebooks')
 
       };
 
-    const handleEdit = (id) => {
-        dispatch(editNotebook(id))
-        history.push('/notebooks')
-    }
+    // const handleEdit = (id) => {
+    //     dispatch(editNotebook(id))
+    //     // history.push('/notebooks')
+    // }
 
     const sessionUser= useSelector(state => state.session.user)
     if(!sessionUser) {
@@ -36,12 +36,10 @@ function NotebooksList() {
         <>
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
-                    {notebooks?.map(({id, title}) => (
+                    {notebooks && Object.values(notebooks).map(({id, title}) => (
                         <NavLink className="notebooks-links" to={`/notebooks/${id}`} key={id}>
                             {title}
-                            <button onClick={() => handleEdit(id)} className='edit-button'>
-                                <NavLink to={`/edit-notebook/${id}`} className='edit-form-link'>Edit</NavLink>
-                            </button>
+                            <NavLink to={`/edit-notebook/${id}`} className='edit-form-link'>Edit</NavLink>
                             <button onClick={() => handleDelete(id)} className='delete-button'>
                                 Delete
                             </button>
