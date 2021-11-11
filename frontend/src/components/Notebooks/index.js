@@ -2,13 +2,14 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook, deleteNotebook, editNotebook } from '../../store/notebooks';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect, useHistory} from 'react-router-dom'
 
 import './notebooks.css'
 
 function NotebooksList() {
     const notebooks = useSelector(state => state.notebooks?.notebooks);
     const dispatch = useDispatch()
+    const history = useHistory()
 
 
     useEffect(() => {
@@ -17,11 +18,13 @@ function NotebooksList() {
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
+        history.push('/notebooks')
 
       };
 
     const handleEdit = (id) => {
         dispatch(editNotebook(id))
+        history.push('/notebooks')
     }
 
     const sessionUser= useSelector(state => state.session.user)

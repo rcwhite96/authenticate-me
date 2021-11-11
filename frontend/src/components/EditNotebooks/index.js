@@ -28,7 +28,6 @@ const EditNotebook = () => {
           }
         });
         if (notebook) {
-          console.log(notebook)
           history.push('/notebooks');
         }
       };
@@ -52,6 +51,7 @@ const EditNotebook = () => {
                     <button className='submit-button' type="submit">
                         Edit Notebook
                     </button>
+
                 </form>
         </>
     )

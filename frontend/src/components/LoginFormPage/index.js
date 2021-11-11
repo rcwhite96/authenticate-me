@@ -50,6 +50,7 @@ const LoginFormPage = () => {
               />
             </label>
             <button type="submit">Log In</button>
+            <button className="login-button" onClick={() => {setCredential('Demo-lition'); setPassword('password');}}>Demo User</button>
       </form>
     )
 }
