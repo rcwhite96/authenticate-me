@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
-import { addNote } from '../../store/notes';
-import './noteform.css'
+import { editNote } from '../../store/notes';
+// import './noteform.css'
 
-const CreateNote = () => {
+const EditNote = () => {
     const sessionUser = useSelector((state => state.session.user))
     const {notebookId} = useParams()
     const [title, setTitle] = useState('');
@@ -23,7 +23,7 @@ const CreateNote = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
-        const note = await dispatch(addNote(notebookId, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
+        const note = await dispatch(editNote(notebookId, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) {
                 const filteredErrors = data.errors.filter(
@@ -39,7 +39,7 @@ const CreateNote = () => {
 
     return (
         <>
-            <h2 className="edit-notebook-header">Add a Note</h2>
+            <h2 className="edit-notebook-header">Edit Note</h2>
                 <form onSubmit={handleSubmit} className="add-notebook-form">
                 <div className="error-div">
                     <p className="user-form-errors">
@@ -79,7 +79,7 @@ const CreateNote = () => {
                         placeholder="Description"
                         value={description}/>
                     <button className='note-submit-button' type="submit">
-                        Add Note
+                        Edit Note
                     </button>
                 </form>
         </>
@@ -87,4 +87,4 @@ const CreateNote = () => {
     )
 }
 
-export default CreateNote
+export default EditNote

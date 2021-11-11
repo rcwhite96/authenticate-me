@@ -12,8 +12,7 @@ import CreateNotebook from './components/CreateNotebooks'
 import EditNotebook from './components/EditNotebooks'
 import NotesList from "./components/Notes";
 import CreateNote from "./components/CreateNotes"
-
-
+import EditNote from "./components/EditNotes"
 
 
 function App() {
@@ -54,6 +53,9 @@ function App() {
           </Route>
           <Route path= '/new-note'>
             <CreateNote/>
+          </Route>
+          <Route path= '/edit-note/:notebookId'>
+            <EditNote/>
           </Route>
         </Switch>
       )}

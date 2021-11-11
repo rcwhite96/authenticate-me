@@ -50,24 +50,24 @@ const validateNote = [
 
 //ADD NEW NOTE
 router.post('/', restoreUser, validateNote, asyncHandler(async (req, res, next) =>{
-    const{title, hookSize, needleSize, yarn, description} = req.body
+    const{notebookId, title, hookSize, needleSize, yarn, description} = req.body
     const{user}= req
     if(!user){
         return next(noteError('Must be logged in to create a note'))
     }
-    const newNote = await Note.create({ userId: user.dataValues.id, title, hookSize, needleSize, yarn, description})
+    const newNote = await Note.create({ userId: user.dataValues.id, notebookId, title, hookSize, needleSize, yarn, description})
     return res.json(newNote)
 }))
 
 //EDIT NOTE
 router.put('/:id(\\d+)', restoreUser, validateNote, asyncHandler(async (req, res, next) => {
   const noteUpdate = await Note.findByPk(req.params.id)
-  const {title} = req.body
+  const {notebookId, title, hookSize, needleSize, yarn, description} = req.body
   const { user } = req;
   if (!user) {
     return next(fetchNotesError('You must be logged in to edit a note'));
   }
-  const note = { title, userId: user.dataValues.id };
+  const note = { notebookId, title, userId: user.dataValues.id, hookSize, needleSize, yarn, description };
   await noteUpdate.update(note);
   return res.json(noteUpdate)
 
