@@ -25,7 +25,6 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     const notebooks = await Notebook.findAll({
         order: [['updatedAt']]
     })
-    console.log(notebooks)
     return res.json(notebooks)
 }))
 
@@ -72,7 +71,7 @@ router.put('/:id(\\d+)', restoreUser, validateNotebook, asyncHandler(async (req,
   await notebookUpdate.update(notebook);
   return res.json(notebookUpdate)
 
-  
+
 }))
 
 //DELETE NOTEBOOK

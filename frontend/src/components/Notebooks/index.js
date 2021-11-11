@@ -9,7 +9,7 @@ import './notebooks.css'
 function NotebooksList() {
     const notebooks = useSelector(state => state.notebooks);
     const dispatch = useDispatch()
-    // const history = useHistory()
+    //const history = useHistory()
 
 
     useEffect(() => {
@@ -18,8 +18,8 @@ function NotebooksList() {
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
-        // history.push('/notebooks')
-
+        window.location.reload();
+        //return history.push('/notebooks')
       };
 
     // const handleEdit = (id) => {

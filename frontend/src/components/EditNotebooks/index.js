@@ -19,6 +19,7 @@ const EditNotebook = () => {
         e.preventDefault();
         setErrors([]);
         const notebook = await dispatch(editNotebook(notebookId, title)).catch(async (res) => {
+
           const data = await res.json();
           if (data && data.errors) {
             const filteredErrors = data.errors.filter(
@@ -28,7 +29,7 @@ const EditNotebook = () => {
           }
         });
         if (notebook) {
-          history.push('/notebooks');
+          return history.push('/notebooks');
         }
       };
 

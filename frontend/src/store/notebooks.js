@@ -41,7 +41,6 @@ export const getAllNotebook = () => async dispatch => {
     const res = await csrfFetch('/api/notebooks')
     if(res.ok) {
         const data = await res.json()
-        // console.log(data)
         dispatch(getAllNotebooks(data))
     }
 }
@@ -76,6 +75,7 @@ export const editNotebook = (id, title) => async (dispatch) => {
     if(res.ok){
         const notebook = await res.json()
         dispatch(update(notebook))
+        return notebook
     }
 }
 
