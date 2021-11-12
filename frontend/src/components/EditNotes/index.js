@@ -19,7 +19,7 @@ const EditNote = () => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if(!notes.title){
+        if(!notes){
             dispatch(getNotes())
         }
     }, [dispatch, notes])
