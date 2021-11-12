@@ -8,7 +8,7 @@ const EditNote = () => {
     const { notebookId } = useParams()
     const sessionUser = useSelector((state => state.session.user))
     const notes = useSelector((state => state.notes[notebookId]))
-    const notesList = useSelector(state => state.notes)
+    // const notesList = useSelector(state => state.notes)
 
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')
@@ -20,7 +20,7 @@ const EditNote = () => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if(!notesList){
+        if(!notes){
             dispatch(getNotes())
         } else {
             setTitle(notes.title)
@@ -29,7 +29,7 @@ const EditNote = () => {
             setYarn(notes.yarn)
             setDescription(notes.description)
         }
-    }, [dispatch, notesList, notes])
+    }, [dispatch, notes, notebookId, title])
 
 
     if (!sessionUser) {
