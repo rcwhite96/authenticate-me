@@ -71,12 +71,6 @@ const CreateNote = () => {
                         className="title-input"
                         placeholder="untitled notebook"
                         value={title}/>
-                    Notebook:
-                    <select className="notebook-categories" onChange={updateNotebook} value={showNotebooks}>
-                        {notebooks.map(notebook =>
-                            <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
-                                )}
-                    </select>
                     Hook Size:
                     <input
                         onChange ={(e) => setHookSize(e.target.value)}
@@ -95,6 +89,12 @@ const CreateNote = () => {
                         className="yarn-input"
                         placeholder="Yarn"
                         value={yarn}/>
+                    Notebook:
+                    <select className="notebook-categories" onChange={updateNotebook} value={showNotebooks}>
+                        {notebooks.map(notebook =>
+                            <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
+                                )}
+                    </select>
                     Description:
                     <textarea
                         onChange ={(e) => setDescription(e.target.value)}
