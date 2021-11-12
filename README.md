@@ -1,6 +1,6 @@
 ## Intro
 
-Hello! Welcome to YarnNotes, a clone of Evernote for your 
+Hello! Welcome to YarnNotes, a clone of Evernote to keep track of all your fiber arts project and ideas. Continue reading to see how to access the live site, or clone it locally.
 
 ## Live Site
 

@@ -8,21 +8,29 @@ const EditNote = () => {
     const { notebookId } = useParams()
     const sessionUser = useSelector((state => state.session.user))
     const notes = useSelector((state => state.notes[notebookId]))
-    console.log(notes)
-    const [title, setTitle] = useState(notes.title);
-    const [hookSize, setHookSize] = useState(notes.hookSize)
-    const [needleSize, setNeedleSize] = useState(notes.needleSize)
-    const [yarn, setYarn] = useState(notes.yarn)
-    const [description, setDescription] = useState(notes.description)
+    const notesList = useSelector(state => state.notes)
+
+    const [title, setTitle] = useState('');
+    const [hookSize, setHookSize] = useState('')
+    const [needleSize, setNeedleSize] = useState('')
+    const [yarn, setYarn] = useState('')
+    const [description, setDescription] = useState('')
     const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if(!notes.title){
+        if(!notesList){
             dispatch(getNotes())
+        } else {
+            setTitle(notes.title)
+            setHookSize(notes.hookSize)
+            setNeedleSize(notes.needleSize)
+            setYarn(notes.yarn)
+            setDescription(notes.description)
         }
-    }, [dispatch, notes])
+    }, [dispatch, notesList, notes])
+
 
     if (!sessionUser) {
         return <Redirect to="/login" />;
