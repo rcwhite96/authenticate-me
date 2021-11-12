@@ -4,7 +4,7 @@ const { restoreUser } = require('../../utils/auth');
 
 const router = express.Router();
 
-const { Notebook } = require('../../db/models');
+const { Notebook, Note } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -30,7 +30,7 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
 
 //GET ONE NOTEBOOK
 router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
-  const notebookId = req.params.notebookId
+  const notebookId = req.params.id
     const {user} = req
     if(!user){
         return next(notebookError('Must be logged in to see notebooks'))
@@ -38,7 +38,7 @@ router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
     const notebook = await Notebook.findAll(
       {order: [['updatedAt']],
         where: {
-          notebookId: notebookId
+          id: notebookId
         },
         include: [
           {model: Note}
