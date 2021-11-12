@@ -30,11 +30,20 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
 
 //GET ONE NOTEBOOK
 router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
+  const notebookId = req.params.notebookId
     const {user} = req
     if(!user){
         return next(notebookError('Must be logged in to see notebooks'))
     }
-    const notebook = await Notebook.findByPk(req.params.id)
+    const notebook = await Notebook.findAll(
+      {order: [['updatedAt']],
+        where: {
+          notebookId: notebookId
+        },
+        include: [
+          {model: Note}
+      ]}
+    )
     return res.json(notebook)
 }))
 
