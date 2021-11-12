@@ -4,10 +4,11 @@ import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { editNote } from '../../store/notes';
 // import './noteform.css'
 
-const EditNote = () => {
+const EditNote = ({id}) => {
     const sessionUser = useSelector((state => state.session.user))
-    const {notebookId} = useParams()
-    const [title, setTitle] = useState('');
+    const userTitle = useSelector((state => state.notes))
+    const { notebookId } = useParams()
+    const [title, setTitle] = useState(userTitle);
     const [hookSize, setHookSize] = useState('')
     const [needleSize, setNeedleSize] = useState('')
     const [yarn, setYarn] = useState('')
@@ -52,7 +53,6 @@ const EditNote = () => {
                     <input
                         onChange ={(e) => setTitle(e.target.value)}
                         className="title-input"
-                        placeholder="untitled notebook"
                         value={title}/>
                     Hook Size:
                     <input
