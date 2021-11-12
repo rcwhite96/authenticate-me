@@ -13,6 +13,7 @@ import EditNotebook from './components/EditNotebooks'
 import NotesList from "./components/Notes";
 import CreateNote from "./components/CreateNotes"
 import EditNote from "./components/EditNotes"
+import FilteredNotes from './components/filteredNotes'
 
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/notebooks">
             <NotebooksList/>
+          </Route>
+          <Route path="/notebooks/:notebookId">
+            <FilteredNotes/>
           </Route>
           <Route path='/new-notebook'>
             <CreateNotebook/>
