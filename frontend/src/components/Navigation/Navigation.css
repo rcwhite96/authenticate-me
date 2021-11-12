@@ -26,15 +26,16 @@ ul {
       margin-right: 0px;
       border-radius: 10px;
       background-color: rgb(255, 248, 254);
-      margin-left: 1600px;
+      max-width: 320px;
+
   }
   .profile-button{
     appearance: auto;
     color: none;
     padding: 5px;
     display: inline-block;
-    text-align: center;
-    align-items: flex-start;
+    text-align: left;
+    justify-content: space-between;
     cursor: default;
     box-sizing: border-box;
     border-radius: 5px;
@@ -43,7 +44,6 @@ ul {
     border-width: 2px;
     border-style: none;
     border-color: none ;
-    margin-left: 1500px;
 
 }
 
@@ -54,5 +54,3 @@ ul {
 .logout-button:hover{
     background-color: rgb(235, 215, 235);
 }
-
-/* GIT TEST */

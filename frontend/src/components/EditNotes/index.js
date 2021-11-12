@@ -4,15 +4,15 @@ import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { editNote } from '../../store/notes';
 // import './noteform.css'
 
-const EditNote = ({id}) => {
-    const sessionUser = useSelector((state => state.session.user))
-    const userTitle = useSelector((state => state.notes))
+const EditNote = () => {
     const { notebookId } = useParams()
-    const [title, setTitle] = useState(userTitle);
-    const [hookSize, setHookSize] = useState('')
-    const [needleSize, setNeedleSize] = useState('')
-    const [yarn, setYarn] = useState('')
-    const [description, setDescription] = useState('')
+    const sessionUser = useSelector((state => state.session.user))
+    const notes = useSelector((state => state.notes[notebookId]))
+    const [title, setTitle] = useState(notes.title);
+    const [hookSize, setHookSize] = useState(notes.hookSize)
+    const [needleSize, setNeedleSize] = useState(notes.needleSize)
+    const [yarn, setYarn] = useState(notes.yarn)
+    const [description, setDescription] = useState(notes.description)
     const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
