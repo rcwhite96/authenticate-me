@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
-import { editNote } from '../../store/notes';
+import { editNote, getNotes } from '../../store/notes';
 // import './noteform.css'
 
 const EditNote = () => {
     const { notebookId } = useParams()
     const sessionUser = useSelector((state => state.session.user))
     const notes = useSelector((state => state.notes[notebookId]))
+    console.log(notes)
     const [title, setTitle] = useState(notes.title);
     const [hookSize, setHookSize] = useState(notes.hookSize)
     const [needleSize, setNeedleSize] = useState(notes.needleSize)
@@ -17,9 +18,16 @@ const EditNote = () => {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
 
+    useEffect(() => {
+        if(!notes.title){
+            dispatch(getNotes())
+        }
+    }, [dispatch, notes])
+
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
