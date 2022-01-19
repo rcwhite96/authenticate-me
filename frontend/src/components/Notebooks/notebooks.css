@@ -33,7 +33,7 @@
     flex-direction:row;
     align-items:center;
     justify-content: flex-end;
-    min-width: 300px;
+    min-width: 320px;
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 5px;
@@ -48,6 +48,10 @@
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 10px;
+}
+
+.add-notebook:hover{
+    background-color: white;
 }
 
 .edit-button{

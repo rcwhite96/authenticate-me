@@ -21,7 +21,6 @@ function Navigation({ isLoaded }){
       <>
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/about" className="about">About</NavLink>
       </>
     );
   }
