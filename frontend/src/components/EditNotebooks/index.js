@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
-import { editNotebook } from '../../store/notebooks';
+import { editNotebook, getAllNotebook } from '../../store/notebooks';
 
 const EditNotebook = () => {
     const {notebookId} = useParams()
     const sessionUser = useSelector((state => state.session.user))
-    const [title, setTitle] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
+    const notebooks = useSelector((state => state.notebooks[notebookId]))
+    const [title, setTitle] = useState(notebooks?.title);
+
+    useEffect(() => {
+          dispatch(getAllNotebook())
+      }, [dispatch, notebookId, title])
 
     if (!sessionUser) {
         return <Redirect to="/login" />;
@@ -59,4 +64,3 @@ const EditNotebook = () => {
 }
 
 export default EditNotebook
-

@@ -88,6 +88,7 @@ export const deleteNotebook = (id) => async dispatch => {
     }
 }
 
+
 const notebookReducer = (state = {}, action) =>{
     let newState = {}
     switch(action.type) {
@@ -101,6 +102,7 @@ const notebookReducer = (state = {}, action) =>{
             return newState;
         case GET_ONE_NOTEBOOK:
             newState= {...state, [action.payload.id]: action.payload}
+            console.log([action.payload])
             return newState
         case UPDATE_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload}

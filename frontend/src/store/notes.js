@@ -4,6 +4,7 @@ const ADD_NOTE = 'note/addNote'
 const GET_NOTES = 'note/getNotes'
 const UPDATE_NOTE = 'note/editNote'
 const REMOVE_NOTE = 'note/removeNote'
+const SEARCH_NOTES = 'notes/searchNote'
 
 
 const get = payload => {
@@ -33,6 +34,14 @@ const remove = payload => {
         payload
     }
 }
+
+const searchNote = payload => {
+    return{
+        type: SEARCH_NOTES,
+        payload
+    }
+}
+
 
 export const getNotes = () => async dispatch => {
     const res = await csrfFetch('/api/notes')
@@ -77,6 +86,16 @@ export const removeNote = (id) => async dispatch => {
     }
 }
 
+export const noteSearch = (searchTerm) => async dispatch => {
+    const res = await fetch(`/api/search/${searchTerm}`)
+    if(res.ok){
+        const data = await res.json()
+        dispatch(searchNote(data))
+        console.log(data)
+        return data
+    }
+}
+
 const noteReducer = (state = {}, action) =>{
     let newState = {}
     switch(action.type) {
@@ -88,15 +107,16 @@ const noteReducer = (state = {}, action) =>{
                  newState[note.id] = note;
             })
             return newState;
-        // case GET_ONE_NOTEBOOK:
-        //     newState= {...state, [action.payload.id]: action.payload}
-        //     return newState
         case UPDATE_NOTE:
             newState={...state, [action.payload.id]: action.payload}
             return newState
         case REMOVE_NOTE:
             newState={...state}
             delete newState[action.payload]
+            return newState
+        case SEARCH_NOTES:
+            newState={...state}
+            newState = action.payload
             return newState
     default:
         return state

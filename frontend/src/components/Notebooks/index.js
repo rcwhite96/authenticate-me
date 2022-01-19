@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook, deleteNotebook } from '../../store/notebooks';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect, useParams} from 'react-router-dom'
 
 import './notebooks.css'
 
@@ -12,13 +12,13 @@ function NotebooksList() {
 
 
 
+
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
-        // window.location.reload();
       };
 
     const sessionUser= useSelector(state => state.session.user)
@@ -31,7 +31,7 @@ function NotebooksList() {
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
                     {notebooks && Object.values(notebooks).map(({id, title}) => (
-                        <NavLink className="notebooks-links" to={`/notebooks/${id}`} key={id}>
+                        <NavLink className="notebooks-links" to={`/notebooks/${id}/notes`} key={id}>
                             {title}
                             <NavLink to={`/edit-notebook/${id}`} className='edit-form-link'>Edit</NavLink>
                             <button onClick={() => handleDelete(id)} className='delete-button'>

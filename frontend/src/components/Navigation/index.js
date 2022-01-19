@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import SearchForm from '../SearchBar/SearchBar';
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -25,12 +27,15 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
+    <div className="nav-bar">
+      <div className="home">
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+        <div className="search-container">
+            <SearchForm/>
+        </div>
+      </div>
+    </div>
   );
 }
 
