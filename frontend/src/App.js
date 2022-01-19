@@ -14,7 +14,7 @@ import NotesList from "./components/Notes";
 import CreateNote from "./components/CreateNotes"
 import EditNote from "./components/EditNotes"
 import OneNotebookPage from "./components/OneNotebook/OneNotebook"
-
+import SearchResults from "./components/SearchResults/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +60,9 @@ function App() {
           </Route>
           <Route path= '/edit-note/:notebookId'>
             <EditNote/>
+          </Route>
+          <Route path= '/:searchTerm'>
+            <SearchResults/>
           </Route>
         </Switch>
       )}
