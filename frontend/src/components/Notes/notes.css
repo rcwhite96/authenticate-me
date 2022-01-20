@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
 .notes_title{
     display: flex;
     flex-direction: row;
@@ -5,17 +8,18 @@
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(58, 24, 50);
     font-size: 35px;
+    font-family: 'Homemade Apple', cursive;
+    margin-top: 20px;
 }
 
 .notes-list{
     display: flex;
     flex-direction:column;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
     margin-left: 400px;
     margin-right: 400px;
-    margin-top: 30px;
+    margin-top: 15px;
     padding-bottom: 30px;
     padding-top: 25px;
     padding-right: 20px;
@@ -41,26 +45,31 @@
     font-weight: bold;
     font-size: 25px;
     margin: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .description {
     font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .hook-size{
     margin: 5px;
     margin-bottom: 0px;
     font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
 }
 .needle-size{
     margin: 5px;
     margin-bottom: 0px;
     font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
 }
 .yarn{
     margin:5px;
     margin-bottom: 10px;
     font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
 
 }
 .add-note{
@@ -70,6 +79,11 @@
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.add-note:hover{
+    background-color: white;
 }
 
 .edit-note-link{
@@ -82,4 +96,13 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.edit-note-link:hover{
+    background-color: rgb(235, 215, 235)
+}
+
+.delete-button{
+    font-family: 'Montserrat', sans-serif;
 }

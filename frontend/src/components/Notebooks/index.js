@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook, deleteNotebook } from '../../store/notebooks';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect, useParams} from 'react-router-dom'
 
 import './notebooks.css'
 
@@ -10,15 +10,12 @@ function NotebooksList() {
     const notebooks = useSelector(state => state.notebooks);
     const dispatch = useDispatch()
 
-
-
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
-        // window.location.reload();
       };
 
     const sessionUser= useSelector(state => state.session.user)

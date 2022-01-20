@@ -29,13 +29,12 @@ const EditNote = () => {
             setYarn(notes.yarn)
             setDescription(notes.description)
         }
-    }, [dispatch, notes, notebookId, title])
+    }, [dispatch, notes, notebookId])
 
 
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()

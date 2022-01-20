@@ -6,15 +6,15 @@ import SignupFormPage from "./components/SignupFormPage";
 import SplashPage from "./components/SplashPage"
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import AboutPage from './components/AboutPage'
 import NotebooksList from "./components/Notebooks";
 import CreateNotebook from './components/CreateNotebooks'
 import EditNotebook from './components/EditNotebooks'
 import NotesList from "./components/Notes";
 import CreateNote from "./components/CreateNotes"
 import EditNote from "./components/EditNotes"
-import FilteredNotes from './components/filteredNotes'
-
+import OneNotebookPage from "./components/OneNotebook/OneNotebook"
+import SearchResults from "./components/SearchResults/SearchResults";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,36 +30,47 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <SplashPage/>
+            <Footer/>
           </Route>
           <Route path="/login">
             <LoginFormPage />
+            <Footer/>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route path="/about">
-            <AboutPage/>
+            <Footer/>
           </Route>
           <Route path="/notebooks">
             <NotebooksList/>
-          </Route>
-          <Route path="/notebooks/:notebookId">
-            <FilteredNotes/>
+            <Footer/>
           </Route>
           <Route path='/new-notebook'>
             <CreateNotebook/>
+            <Footer/>
           </Route>
           <Route path='/edit-notebook/:notebookId'>
             <EditNotebook/>
+            <Footer/>
           </Route>
           <Route path= '/notes'>
             <NotesList/>
+            <Footer/>
           </Route>
           <Route path= '/new-note'>
             <CreateNote/>
+            <Footer/>
+          </Route>
+          <Route path= '/:notebookId' exact={true}>
+            <OneNotebookPage/>
+            <Footer/>
           </Route>
           <Route path= '/edit-note/:notebookId'>
             <EditNote/>
+            <Footer/>
+          </Route>
+          <Route path= '/:searchTerm' exact={true}>
+            <SearchResults/>
+            <Footer/>
           </Route>
         </Switch>
       )}
