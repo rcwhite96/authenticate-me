@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { editNote, getNotes } from '../../store/notes';
-// import './noteform.css'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const EditNote = () => {
     const { notebookId } = useParams()
@@ -88,11 +89,15 @@ const EditNote = () => {
                         placeholder="Yarn"
                         value={yarn}/>
                     Description:
-                    <textarea
-                        onChange ={(e) => setDescription(e.target.value)}
-                        className="description-input"
-                        placeholder="Description"
-                        value={description}/>
+                    <div className="editor">
+                        <CKEditor
+                        editor={ClassicEditor}
+                        data={description}
+                        onChange={(e, editor) => {
+                            const data = editor.getData()
+                            setDescription(data)
+                        }}/>
+                    </div>
                     <button className='note-submit-button' type="submit">
                         Edit Note
                     </button>

@@ -3,6 +3,7 @@ import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getNotes, removeNote } from '../../store/notes';
 import {NavLink, Redirect} from 'react-router-dom'
+import parse from 'html-react-parser';
 
 import './notes.css'
 
@@ -42,7 +43,7 @@ function NotesList() {
                                 Yarn: {yarn}
                             </div>
                             <div className="description">
-                                {description}
+                                {parse(description)}
                             </div>
                             <NavLink to={`/edit-note/${id}`} className='edit-note-link'>Edit</NavLink>
                             <button onClick={() => handleDelete(id)} className='delete-button'>

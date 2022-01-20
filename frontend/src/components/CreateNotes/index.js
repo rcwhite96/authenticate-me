@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect} from 'react-router-dom';
 import { addNote } from '../../store/notes';
 import { getAllNotebook } from '../../store/notebooks';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import parse from 'html-react-parser';
 import './noteform.css'
 
 const CreateNote = () => {
@@ -96,11 +99,15 @@ const CreateNote = () => {
                                 )}
                     </select>
                     Description:
-                    <textarea
-                        onChange ={(e) => setDescription(e.target.value)}
-                        className="description-input"
-                        placeholder="Description"
-                        value={description}/>
+                    <div className="editor">
+                        <CKEditor
+                        editor={ClassicEditor}
+                        data={description}
+                        onChange={(e, editor) => {
+                            const data = editor.getData()
+                            setDescription(data)
+                        }}/>
+                    </div>
                     <button className='note-submit-button' type="submit">
                         Add Note
                     </button>
