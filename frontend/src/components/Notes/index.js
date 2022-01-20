@@ -14,7 +14,6 @@ function NotesList() {
         dispatch(getNotes())
     }, [dispatch])
 
-
     const handleDelete = (id) => {
         dispatch(removeNote(id))
     }

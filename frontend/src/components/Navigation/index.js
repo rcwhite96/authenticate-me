@@ -30,7 +30,7 @@ function Navigation({ isLoaded }){
       <div className="home">
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-        <div className="search-container">
+        <div className="search">
             <SearchForm/>
         </div>
       </div>

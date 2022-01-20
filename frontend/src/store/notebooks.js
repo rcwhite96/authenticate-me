@@ -102,7 +102,7 @@ const notebookReducer = (state = {}, action) =>{
             return newState;
         case GET_ONE_NOTEBOOK:
             newState= {...state, [action.payload.id]: action.payload}
-            console.log([action.payload])
+            console.log(newState)
             return newState
         case UPDATE_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload}

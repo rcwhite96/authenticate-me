@@ -60,7 +60,7 @@ function App() {
             <CreateNote/>
             <Footer/>
           </Route>
-          <Route path= '/:notebookId/notes'>
+          <Route path= '/:notebookId' exact={true}>
             <OneNotebookPage/>
             <Footer/>
           </Route>
@@ -68,7 +68,7 @@ function App() {
             <EditNote/>
             <Footer/>
           </Route>
-          <Route path= '/:searchTerm'>
+          <Route path= '/:searchTerm' exact={true}>
             <SearchResults/>
             <Footer/>
           </Route>

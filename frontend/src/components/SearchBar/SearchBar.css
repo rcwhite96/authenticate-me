@@ -8,9 +8,10 @@
 }
 
 .search-bar{
-    display: inline-flex;
+    display:inline-flex;
     justify-content: center;
     align-items: center;
+    margin-left: 70%;
 }
 
 .search-input{
