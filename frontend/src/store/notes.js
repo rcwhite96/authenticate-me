@@ -115,8 +115,7 @@ const noteReducer = (state = {}, action) =>{
             delete newState[action.payload]
             return newState
         case SEARCH_NOTES:
-            newState={...state}
-            newState = action.payload
+            newState={...state, [action.payload.id]: action.payload}
             return newState
     default:
         return state

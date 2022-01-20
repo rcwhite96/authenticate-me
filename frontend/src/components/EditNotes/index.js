@@ -36,7 +36,6 @@ const EditNote = () => {
         return <Redirect to="/login" />;
       }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])

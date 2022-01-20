@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import{ NavLink, useParams} from 'react-router-dom'
+import{useParams} from 'react-router-dom'
 import { getOneNotebook } from  '../../store/notebooks'
-import { getNotes } from "../../store/notes";
+// import { getNotes } from "../../store/notes";
 
 
 
