@@ -113,7 +113,6 @@ const CreateNote = () => {
                     </button>
                 </form>
         </>
-
     )
 }
 
