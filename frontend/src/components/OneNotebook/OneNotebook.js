@@ -22,7 +22,7 @@ export default function OneNotebookPage(){
 
     return(
         <>
-        <h2>helloooo{currentNotebook?.title}</h2>
+        <h2>{currentNotebook?.title}</h2>
             <div>{notes}</div>
         </>
     )
