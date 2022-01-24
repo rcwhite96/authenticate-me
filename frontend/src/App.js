@@ -68,7 +68,7 @@ function App() {
             <EditNote/>
             <Footer/>
           </Route>
-          <Route path= '/:searchTerm' exact={true}>
+          <Route path= '/search/:searchTerm' exact={true}>
             <SearchResults/>
             <Footer/>
           </Route>
