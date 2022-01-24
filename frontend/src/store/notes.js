@@ -91,7 +91,6 @@ export const noteSearch = (searchTerm) => async dispatch => {
     if(res.ok){
         const data = await res.json()
         dispatch(searchNote(data))
-        console.log(data)
         return data
     }
 }
@@ -115,7 +114,8 @@ const noteReducer = (state = {}, action) =>{
             delete newState[action.payload]
             return newState
         case SEARCH_NOTES:
-            newState={...state, [action.payload.id]: action.payload}
+            newState = {...state}
+            newState = action.payload
             return newState
     default:
         return state

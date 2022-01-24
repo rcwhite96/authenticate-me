@@ -11,7 +11,7 @@
     display:inline-flex;
     justify-content: center;
     align-items: center;
-    margin-left: 23rem;
+    margin-left: 20em;
 }
 
 .search-input{
@@ -20,6 +20,7 @@
     border-radius: 5px;
     border: none
 }
+
 .search-btn{
     padding: 5px;
     padding-left: 10px;

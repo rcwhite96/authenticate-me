@@ -8,8 +8,7 @@ import NotesList from '../Notes/index'
 export default function OneNotebookPage(){
     let {notebookId} = useParams()
     let dispatch=useDispatch()
-    let currentNotebook=useSelector(state => state.notebooks)
-    console.log(currentNotebook, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    let currentNotebook=useSelector(state => state.notebooks.notebook)
 
     useEffect(() => {
         getOneNotebook(notebookId)

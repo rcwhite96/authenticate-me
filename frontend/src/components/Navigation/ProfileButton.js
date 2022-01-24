@@ -7,11 +7,6 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
   useEffect(() => {
     if (!showMenu) return;
 
@@ -34,18 +29,8 @@ function ProfileButton({ user }) {
       <NavLink to="/notebooks" className="notebooks">Notebooks</NavLink>
       <NavLink to="/notes">All Notes</NavLink>
       <span className="block"/>
-      <button className="profile-button" onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout} className="logout-button">Log Out</button>
-          </li>
-        </ul>
-      )}
+      {/* <NavLink exact to="/profile"><i className="far fa-user"/></NavLink> */}
+      <button onClick={logout} className="logout-button">Log Out</button>
     </>
   );
 }

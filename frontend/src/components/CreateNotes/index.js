@@ -5,7 +5,6 @@ import { addNote } from '../../store/notes';
 import { getAllNotebook } from '../../store/notebooks';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import parse from 'html-react-parser';
 import './noteform.css'
 
 const CreateNote = () => {
@@ -113,7 +112,6 @@ const CreateNote = () => {
                     </button>
                 </form>
         </>
-
     )
 }
 

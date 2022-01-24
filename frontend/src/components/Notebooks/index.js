@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllNotebook, deleteNotebook } from '../../store/notebooks';
-import {NavLink, Redirect, useParams} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 
 import './notebooks.css'
 

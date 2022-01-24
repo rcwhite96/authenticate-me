@@ -46,15 +46,22 @@ a:hover{
     border-width: 2px;
     border-style: none;
     border-color: none ;
+    margin-left: 200px;
 
 }
 
 .logout-button{
-    background-color: thistle;
+    padding: 5px;
+    margin: 5px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: rgb(58, 24, 50);
+    background-color: none;
 }
 
 .logout-button:hover{
-    background-color: rgb(235, 215, 235);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 
 .home{
