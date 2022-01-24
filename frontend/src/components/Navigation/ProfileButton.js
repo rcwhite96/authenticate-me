@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
       <NavLink to="/notebooks" className="notebooks">Notebooks</NavLink>
       <NavLink to="/notes">All Notes</NavLink>
       <span className="block"/>
-      <NavLink exact to="/profile"><i className="far fa-user" /></NavLink>
+      {/* <NavLink exact to="/profile"><i className="far fa-user"/></NavLink> */}
       <button onClick={logout} className="logout-button">Log Out</button>
     </>
   );
