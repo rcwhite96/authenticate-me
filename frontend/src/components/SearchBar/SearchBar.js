@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Redirect } from "react-router-dom";
 import {noteSearch} from "../../store/notes"
 
 import './SearchBar.css'
@@ -9,6 +9,7 @@ export default function SearchForm(){
     const [term, setTerm] = useState('')
     const dispatch = useDispatch()
     const history = useHistory()
+    const sessionUser= useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(noteSearch(term))
@@ -16,6 +17,10 @@ export default function SearchForm(){
             history.push(`/search/${term}`)
         }
     }, [term, history, dispatch])
+    
+    if(!sessionUser) {
+        return <Redirect to='/'/>
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
