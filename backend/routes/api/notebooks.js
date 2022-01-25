@@ -35,7 +35,7 @@ router.get('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
     if(!user){
         return next(notebookError('Must be logged in to see notebooks'))
     }
-    const notebook = await Notebook.findAll(
+    const notebook = await Notebook.findByPk(
       {order: [['updatedAt']],
         where: {
           id: notebookId

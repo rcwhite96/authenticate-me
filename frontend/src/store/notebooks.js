@@ -13,9 +13,9 @@ const getAllNotebooks = payload => {
     }
 }
 
-const getOne = notebook => ({
+const getOne = payload => ({
     type: GET_ONE_NOTEBOOK,
-    notebook
+    payload
 })
 
 const add = payload => {
@@ -49,6 +49,7 @@ export const getOneNotebook = (id) => async dispatch =>{
     const res = await fetch(`/api/notebooks/${id}`)
     if (res.ok){
         const notebook = await res.json()
+        console.log(notebook)
         dispatch(getOne(notebook))
     }
 }

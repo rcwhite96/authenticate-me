@@ -25,7 +25,7 @@
     padding-right: 20px;
     padding-left: 20px;
     background-color: rgb(255, 248, 254, 0.5);
-    min-width: 1040px;
+
 }
 
 .notes-links{
@@ -33,7 +33,6 @@
     flex-direction:column;
     align-items:center;
     justify-content: flex-end;
-    min-width: 1020px;
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 10px;
