@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 .note-submit-button{
     margin: 10px;
 }
@@ -23,10 +25,7 @@
 .yarn-input{
     margin-top: 5px;
 }
-.description-input{
-    min-width: 500px;
-    min-height: 200px;
-    border-radius: 5px;
-    border: none;
-    margin-top: 5px;
+.editor{
+    padding-top: 5px;
+    max-width: 50rem;
 }

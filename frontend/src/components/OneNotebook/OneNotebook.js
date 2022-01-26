@@ -6,13 +6,14 @@ import NotesList from '../Notes/index'
 // import { getNotes } from "../../store/notes";
 
 export default function OneNotebookPage(){
-    let {notebookId} = useParams()
+    let {id} = useParams()
     let dispatch=useDispatch()
-    let currentNotebook=useSelector(state => state.notebooks.notebook)
+    let currentNotebook=useSelector(state => state.notebooks)
+    
 
     useEffect(() => {
-        getOneNotebook(notebookId)
-    }, [dispatch])
+        getOneNotebook(id)
+    }, [dispatch, id])
 
     const notes = currentNotebook?.NotesList.map((note, index) =>
         <div key={index}>
@@ -22,7 +23,7 @@ export default function OneNotebookPage(){
 
     return(
         <>
-        <h2>{currentNotebook?.title}</h2>
+        <h2>{currentNotebook?.title}hellooo</h2>
             <div>{notes}</div>
         </>
     )

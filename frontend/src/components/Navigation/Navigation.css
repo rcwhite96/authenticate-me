@@ -13,10 +13,9 @@ a:hover{
 
 .nav-bar {
     background-color: rgb(255, 248, 254, 0.5);
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display:flex;
-    align-items: center;
-    align-self: center;
 
 
   }
