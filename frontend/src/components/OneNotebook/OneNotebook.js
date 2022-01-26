@@ -9,7 +9,7 @@ export default function OneNotebookPage(){
     let {id} = useParams()
     let dispatch=useDispatch()
     let currentNotebook=useSelector(state => state.notebooks)
-    console.log(currentNotebook)
+    
 
     useEffect(() => {
         getOneNotebook(id)
