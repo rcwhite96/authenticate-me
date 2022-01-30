@@ -48,9 +48,10 @@ export const getAllNotebook = () => async dispatch => {
 export const getOneNotebook = (id) => async dispatch =>{
     const res = await fetch(`/api/notebooks/${id}`)
     if (res.ok){
-        const notebook = await res.json()
-        console.log(notebook)
-        dispatch(getOne(notebook))
+        const data = await res.json()
+        console.log(data)
+        dispatch(getOne(data))
+        return data
     }
 }
 
@@ -76,6 +77,7 @@ export const editNotebook = (id, title) => async (dispatch) => {
     if(res.ok){
         const notebook = await res.json()
         dispatch(update(notebook))
+        console.log(notebook)
         return notebook
     }
 }
@@ -102,7 +104,10 @@ const notebookReducer = (state = {}, action) =>{
             })
             return newState;
         case GET_ONE_NOTEBOOK:
-            newState= {...state, [action.payload.id]: action.payload}
+            newState = {...state}
+            newState.oneNotebook = action.payload
+            console.log(newState)
+            console.log("AAAAAAAA")
             return newState
         case UPDATE_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload}
