@@ -6,17 +6,17 @@ const REMOVE_NOTEBOOK = 'notebook/deleteNotebook'
 const UPDATE_NOTEBOOK = 'notebook/editNotebook'
 
 
+const getOne = payload => ({
+    type: GET_ONE_NOTEBOOK,
+    payload
+})
+
 const getAllNotebooks = payload => {
     return{
         type: GET_ALL_NOTEBOOKS,
         payload
     }
 }
-
-const getOne = payload => ({
-    type: GET_ONE_NOTEBOOK,
-    payload
-})
 
 const add = payload => {
     return {
@@ -37,21 +37,20 @@ const update = payload => {
     }
 }
 
+export const getOneNotebook = (id) => async dispatch =>{
+    const res = await fetch(`/api/notebooks/${id}`)
+    if (res.ok){
+        const data = await res.json()
+        dispatch(getOne(data))
+        return data
+    }
+}
+
 export const getAllNotebook = () => async dispatch => {
     const res = await csrfFetch('/api/notebooks')
     if(res.ok) {
         const data = await res.json()
         dispatch(getAllNotebooks(data))
-    }
-}
-
-export const getOneNotebook = (id) => async dispatch =>{
-    const res = await fetch(`/api/notebooks/${id}`)
-    if (res.ok){
-        const data = await res.json()
-        console.log(data)
-        dispatch(getOne(data))
-        return data
     }
 }
 
@@ -95,6 +94,11 @@ export const deleteNotebook = (id) => async dispatch => {
 const notebookReducer = (state = {}, action) =>{
     let newState = {}
     switch(action.type) {
+        case GET_ONE_NOTEBOOK:
+            newState = {...state}
+            newState.oneNotebook = action.payload
+            console.log(newState)
+            return newState
         case ADD_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload};
             return newState;
@@ -103,12 +107,6 @@ const notebookReducer = (state = {}, action) =>{
                  newState[notebook.id] = notebook;
             })
             return newState;
-        case GET_ONE_NOTEBOOK:
-            newState = {...state}
-            newState.oneNotebook = action.payload
-            console.log(newState)
-            console.log("AAAAAAAA")
-            return newState
         case UPDATE_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload}
             return newState
