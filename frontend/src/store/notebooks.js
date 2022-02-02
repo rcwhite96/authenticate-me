@@ -6,10 +6,12 @@ const REMOVE_NOTEBOOK = 'notebook/deleteNotebook'
 const UPDATE_NOTEBOOK = 'notebook/editNotebook'
 
 
-const getOne = payload => ({
-    type: GET_ONE_NOTEBOOK,
-    payload
-})
+const getOne = payload => {
+    return{
+        type: GET_ONE_NOTEBOOK,
+        payload
+    }
+}
 
 const getAllNotebooks = payload => {
     return{
@@ -76,7 +78,7 @@ export const editNotebook = (id, title) => async (dispatch) => {
     if(res.ok){
         const notebook = await res.json()
         dispatch(update(notebook))
-        console.log(notebook)
+        
         return notebook
     }
 }
@@ -97,7 +99,6 @@ const notebookReducer = (state = {}, action) =>{
         case GET_ONE_NOTEBOOK:
             newState = {...state}
             newState.oneNotebook = action.payload
-            console.log(newState)
             return newState
         case ADD_NOTEBOOK:
             newState={...state, [action.payload.id]: action.payload};

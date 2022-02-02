@@ -9,7 +9,6 @@ const EditNote = () => {
     const { notebookId } = useParams()
     const sessionUser = useSelector((state => state.session.user))
     const notes = useSelector((state => state.notes[notebookId]))
-    // const notesList = useSelector(state => state.notes)
 
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')

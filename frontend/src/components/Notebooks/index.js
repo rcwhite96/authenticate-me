@@ -13,6 +13,7 @@ function NotebooksList() {
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
+    
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));

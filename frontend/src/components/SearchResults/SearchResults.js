@@ -7,7 +7,7 @@ import '../Notes/index'
 export default function SearchResults(){
     let dispatch = useDispatch()
     let note = useSelector(state => state.notes)
-    console.log(note)
+    
 
     useEffect(() => {
         dispatch(getNotes())
