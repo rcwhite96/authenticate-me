@@ -10,9 +10,7 @@ import './noteform.css'
 const CreateNote = () => {
     const sessionUser = useSelector((state => state.session.user))
     const notebooks = useSelector(state => Object.values(state.notebooks));
-    console.log(notebooks)
     const [showNotebooks, setShowNotebooks] = useState('');
-    // const {notebookId} = useParams()
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')
     const [needleSize, setNeedleSize] = useState('')
@@ -33,7 +31,6 @@ const CreateNote = () => {
             setShowNotebooks(notebooks[0].id);
         }
       }, [notebooks, showNotebooks]);
-      console.log(notebooks)
 
     if (!sessionUser) {
         return <Redirect to="/login" />;

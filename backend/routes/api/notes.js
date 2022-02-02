@@ -89,7 +89,6 @@ router.delete('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => 
 //SEARCH NOTE
 router.post("/search", asyncHandler(async (req, res, next) =>{
   const search = req.body.search
-  // console.log(req.body)
   const notes = await Note.findAll({
       where: {
         title: {[Op.substring]: `${search}`},

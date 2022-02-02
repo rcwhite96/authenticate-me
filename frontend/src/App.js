@@ -40,8 +40,12 @@ function App() {
             <SignupFormPage />
             <Footer/>
           </Route>
-          <Route path="/notebooks">
+          <Route path="/notebooks" exact={true}>
             <NotebooksList/>
+            <Footer/>
+          </Route>
+          <Route path= '/notebooks/:notebookId' exact={true}>
+            <OneNotebookPage/>
             <Footer/>
           </Route>
           <Route path='/new-notebook'>
@@ -60,11 +64,7 @@ function App() {
             <CreateNote/>
             <Footer/>
           </Route>
-          <Route path= '/notebooks/:id' exact={true}>
-            <OneNotebookPage/>
-            <Footer/>
-          </Route>
-          <Route path= '/edit-note/:notebookId'>
+          <Route path= '/edit-note/:noteId'>
             <EditNote/>
             <Footer/>
           </Route>
