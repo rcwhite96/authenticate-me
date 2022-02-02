@@ -44,7 +44,7 @@ function App() {
             <NotebooksList/>
             <Footer/>
           </Route>
-          <Route path= '/notebooks/:notebookId' exact={true}>
+          <Route path= '/notebooks/:id' exact={true}>
             <OneNotebookPage/>
             <Footer/>
           </Route>

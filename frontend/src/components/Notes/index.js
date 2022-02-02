@@ -29,7 +29,7 @@ function NotesList() {
             <h2 className="notes_title">Notes</h2>
                 <div className="notes-list">
                     {notes && Object.values(notes).map(({id, title, hookSize, needleSize, yarn, description}) => (
-                        <NavLink className="notes-links" to={`/notes/${id}`} key={id}>
+                        <div className="notes-links" to={`/notes/${id}`} key={id}>
                             <div className="title">
                                 {title}
                             </div>
@@ -49,7 +49,7 @@ function NotesList() {
                             <button onClick={() => handleDelete(id)} className='delete-button'>
                                 Delete
                             </button>
-                        </NavLink>
+                        </div>
                     ))}
                     <NavLink to="/new-note" className="add-note">
                         Add a Note

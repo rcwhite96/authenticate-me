@@ -6,9 +6,9 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const EditNote = () => {
-    const { notebookId } = useParams()
+    const { noteId } = useParams()
     const sessionUser = useSelector((state => state.session.user))
-    const notes = useSelector((state => state.notes[notebookId]))
+    const notes = useSelector((state => state.notes[noteId]))
 
     const [title, setTitle] = useState('');
     const [hookSize, setHookSize] = useState('')
@@ -29,7 +29,7 @@ const EditNote = () => {
             setYarn(notes.yarn)
             setDescription(notes.description)
         }
-    }, [dispatch, notes, notebookId])
+    }, [dispatch, notes, noteId])
 
 
     if (!sessionUser) {
@@ -39,7 +39,7 @@ const EditNote = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
-        const note = await dispatch(editNote(notebookId, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
+        const note = await dispatch(editNote(noteId, title, hookSize, needleSize, yarn, description)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) {
                 const filteredErrors = data.errors.filter(
@@ -68,6 +68,7 @@ const EditNote = () => {
                     <input
                         onChange ={(e) => setTitle(e.target.value)}
                         className="title-input"
+                        placeholder="Title"
                         value={title}/>
                     Hook Size:
                     <input

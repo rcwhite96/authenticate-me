@@ -9,13 +9,13 @@ import parse from 'html-react-parser';
 export default function OneNotebookPage(){
     let dispatch=useDispatch()
     const sessionUser = useSelector((state => state.session.user))
-    let {notebookId} = useParams()
+    let {id} = useParams()
     let currentNotebook=useSelector(state => state.notebooks.oneNotebook?.Notes)
     console.log(currentNotebook)
 
     useEffect(() => {
         if(!currentNotebook){
-            dispatch(getOneNotebook(notebookId))
+            dispatch(getOneNotebook(id))
         }
     }, [dispatch,])
 
@@ -27,24 +27,6 @@ export default function OneNotebookPage(){
       const handleDelete = (id) => {
         dispatch(removeNote(id))
     }
-
-    // const notebookArr = Object.values(currentNotebook)
-    // console.log(notebookArr)
-
-    // const notes = currentNotebook?.NotesList.map((note, index) =>
-    //     <div key={index}>
-    //         <NotesList />
-    //         <div>{note.title}</div>
-    //     </div>)
-
-    // const notes = currentNotebook && Object.values(currentNotebook).map(({id, title}) => (
-    //     <div className="notes-links" key={id}>
-    //         <div className="title">
-
-    //             {title}
-    //         </div>
-    //     </div>
-    //     ))
 
     return(
         <>
@@ -73,7 +55,7 @@ export default function OneNotebookPage(){
                             </button>
                         </div>
                 ))}
-                </div>
+            </div>
         </>
     )
 }
