@@ -46,27 +46,9 @@ router.post(
 
 
 router.get('/', asyncHandler(async(req, res, next) => {
-  // if(!user){
-  //     return next(profileError('Must be logged in to view your profile.'))
-  // }
   const profile = await User.findByPk(req.params.id)
   return res.json(profile)
 }))
 
-router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
-
-  const profile = await User.findByPk(req.params.id)
-  console.log(profile)
-  console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
-  return res.json(profile)
-}))
-
-router.put('/:id(\\d+)', asyncHandler(async(req, res, next) => {
-  const profileUpdate = await User.findByPk(req.params.id)
-  const {username, email, hashedPassword} = req.body
-  const profile = { username, email, userId: user.dataValues.id, hashedPassword };
-  await profileUpdate.update(profile);
-  return res.json(profileUpdate)
-}))
 
 module.exports = router;
