@@ -2,13 +2,15 @@ import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getGallery, deletePhoto } from '../../store/galleries';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect, useHistory, useParams} from 'react-router-dom'
 import './GalleryPage.css'
 
 function GalleryPage(){
     const sessionUser = useSelector((state => state.session.user))
     const galleryPhotos = useSelector(state => state.gallery.gallery)
+    const {photoId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const imgs = galleryPhotos?.map((galleryPhoto, index) =>
         <div key={index}>
@@ -28,13 +30,15 @@ function GalleryPage(){
         dispatch(getGallery())
     }, [dispatch])
 
+    const handleDelete = async(photoId) => {
+        await dispatch(deletePhoto(photoId))
+        window.location.reload(false);
+     }
+
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
 
-    const handleDelete = (id) => {
-        dispatch(deletePhoto(id))
-    }
 
     return (
         <>
