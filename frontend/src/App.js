@@ -15,8 +15,7 @@ import EditNote from "./components/EditNotes"
 import OneNotebookPage from "./components/OneNotebook/OneNotebook"
 import SearchResults from "./components/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
-import ProfilePage from "./components/ProfilePage/ProfilePage";
-import EditProfilePage from "./components/EditProfilePage/EditProfilePage";
+import GalleryPage from "./components/GalleryPage/GalleryPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -70,16 +69,12 @@ function App() {
             <EditNote/>
             <Footer/>
           </Route>
-          <Route path= '/profile' exact={true}>
-            <ProfilePage/>
-            <Footer/>
-          </Route>
-          <Route path= '/edit-profile/:userId' exact={true}>
-            <EditProfilePage/>
-            <Footer/>
-          </Route>
           <Route path= '/search/:searchTerm' exact={true}>
             <SearchResults/>
+            <Footer/>
+          </Route>
+          <Route path= '/gallery' exact={true}>
+            <GalleryPage/>
             <Footer/>
           </Route>
         </Switch>

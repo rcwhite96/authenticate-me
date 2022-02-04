@@ -28,9 +28,8 @@ function ProfileButton({ user }) {
   return (
     <>
       <NavLink to="/notebooks" className="notebooks">Notebooks</NavLink>
-      <NavLink to="/notes">All Notes</NavLink>
+      <NavLink to="/gallery">My Gallery</NavLink>
       <span className="block"/>
-      <NavLink exact to={`/profile`}><i className="far fa-user"/></NavLink>
       <button onClick={logout} className="logout-button">Log Out</button>
     </>
   );
