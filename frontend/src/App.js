@@ -15,6 +15,7 @@ import EditNote from "./components/EditNotes"
 import OneNotebookPage from "./components/OneNotebook/OneNotebook"
 import SearchResults from "./components/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,10 @@ function App() {
           </Route>
           <Route path= '/edit-note/:noteId'>
             <EditNote/>
+            <Footer/>
+          </Route>
+          <Route path= '/profile' exact={true}>
+            <ProfilePage/>
             <Footer/>
           </Route>
           <Route path= '/search/:searchTerm' exact={true}>

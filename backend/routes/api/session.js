@@ -55,6 +55,21 @@ router.delete(
   }
 );
 
+
+router.put('/', asyncHandler(async(req, res, next) => {
+  const profileUpdate = await User.findByPk(req.params.id)
+  const {username, email, hashedPassword} = req.body
+  const profile = { username, email, userId: user.dataValues.id, hashedPassword };
+  await profileUpdate.update(profile);
+  return res.json(profileUpdate)
+}))
+
+router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+
+  const profile = await User.findByPk(req.params.id)
+  return res.json(profile)
+}))
+
 // RESTORE SESSION USER
 router.get(
     '/',
