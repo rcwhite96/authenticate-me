@@ -5,41 +5,42 @@ import { editProfile } from '../../store/session';
 
 const EditProfilePage = () => {
     const sessionUser = useSelector((state => state.session.user))
+    console.log("AAAAAAAAAAAAAAAAAAAAA")
+    console.log(sessionUser.id)
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const dispatch = useDispatch()
     const history = useHistory();
     const [errors, setErrors] = useState([]);
+    const { userId } = useParams()
 
     useEffect(() => {
         if(!sessionUser){
-            dispatch(editProfile())
+            dispatch(editProfile(sessionUser.id))
         }else{
             setUsername(sessionUser.username)
             setEmail(sessionUser.email)
         }
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     if (!sessionUser) {
         return <Redirect to="/login" />;
       }
 
-      const handleSubmit = async (e) => {
-        e.preventDefault()
-        setErrors([])
-        const note = await dispatch(editProfile(username)).catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) {
-                const filteredErrors = data.errors.filter(
-                  (error) => error !== 'Invalid value'
-                );
-                setErrors(filteredErrors);
-              }
-        })
-        if(note) {
-            return history.push('/profile')
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (password === confirmPassword) {
+          setErrors([]);
+          return dispatch(editProfile(username, email, password, sessionUser.id))
+            .catch(async (res) => {
+              const data = await res.json();
+              if (data && data.errors) setErrors(data.errors);
+            });
         }
-    }
+        return setErrors(['Confirm Password field must be the same as the Password field']);
+      };
 
     return (
         <>
@@ -52,20 +53,43 @@ const EditProfilePage = () => {
                         ))}
                     </p>
                  </div>
+                 <label>
+                     Username
                     <input
                         onChange ={(e) => setUsername(e.target.value)}
                         name="title"
                         placeholder="username"
                         value={username}/>
+                    </label>
+                    <label>
+                        Email
                     <input
                         onChange ={(e) => setEmail(e.target.value)}
                         name="title"
                         placeholder="email"
                         value={email}/>
+                    </label>
+                    <label>
+                       New Password
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                        />
+                      </label>
+                      <label>
+                        Confirm Password
+                        <input
+                          type="password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                        />
+                      </label>
                     <button className='submit-button' type="submit">
                         Confirm
                     </button>
-
                 </form>
         </>
     )

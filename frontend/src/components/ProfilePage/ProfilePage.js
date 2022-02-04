@@ -1,12 +1,15 @@
 import React from 'react'
 import {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect, useParams} from 'react-router-dom'
 import {restoreUser} from '../../store/session'
 
 function ProfilePage(){
     const dispatch = useDispatch()
     const sessionUser = useSelector((state => state.session.user))
+    console.log(sessionUser)
+    let {userId} = useParams()
+    console.log(sessionUser.id)
 
     useEffect(() => {
         dispatch(restoreUser())
@@ -16,10 +19,8 @@ function ProfilePage(){
         return <Redirect to="/login" />;
       }
 
-      const user = sessionUser.username
-
-
-      const email = sessionUser.email
+    const user = sessionUser.username
+    const email = sessionUser.email
 
     return (
         <>
@@ -27,7 +28,7 @@ function ProfilePage(){
         <div className="notes-list">
             <div className="title">{user}</div>
             <div className="yarn">{email}</div>
-            <NavLink to={`/edit-profile`} className='add-notebook'>Edit</NavLink>
+            <NavLink to={`/edit-profile/${sessionUser.id}`} className='add-notebook'>Edit</NavLink>
         </div>
         </>
     )

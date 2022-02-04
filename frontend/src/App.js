@@ -74,7 +74,7 @@ function App() {
             <ProfilePage/>
             <Footer/>
           </Route>
-          <Route path= '/edit-profile' exact={true}>
+          <Route path= '/edit-profile/:userId' exact={true}>
             <EditProfilePage/>
             <Footer/>
           </Route>
