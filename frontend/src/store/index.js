@@ -3,14 +3,15 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import notebookReducer from "./notebooks";
 import noteReducer from "./notes";
-import profileReducer from "./profile";
+import galleryReducer from "./galleries"
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   notebooks: notebookReducer,
   notes: noteReducer,
-  profile: profileReducer
+  gallery: galleryReducer
+
 });
 
 let enhancer;

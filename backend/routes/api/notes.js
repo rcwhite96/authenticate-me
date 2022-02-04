@@ -70,8 +70,6 @@ router.put('/:id(\\d+)', restoreUser, validateNote, asyncHandler(async (req, res
   const note = { notebookId, title, userId: user.dataValues.id, hookSize, needleSize, yarn, description };
   await noteUpdate.update(note);
   return res.json(noteUpdate)
-
-
 }))
 
 //DELETE NOTE

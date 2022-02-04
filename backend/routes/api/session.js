@@ -55,17 +55,19 @@ router.delete(
   }
 );
 
-
-router.put('/', asyncHandler(async(req, res, next) => {
+router.put('/:id(\\d+)', asyncHandler(async(req, res, next) => {
   const profileUpdate = await User.findByPk(req.params.id)
-  const {username, email, hashedPassword} = req.body
-  const profile = { username, email, userId: user.dataValues.id, hashedPassword };
+  const {id, username, email, hashedPassword} = req.body
+  const { user } = req;
+  if (!user) {
+    return next(fetchNotesError('You must be logged in to edit a note'));
+  }
+  const profile = { id, username, email, hashedPassword };
   await profileUpdate.update(profile);
   return res.json(profileUpdate)
 }))
 
 router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
-
   const profile = await User.findByPk(req.params.id)
   return res.json(profile)
 }))

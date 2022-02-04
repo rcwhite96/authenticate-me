@@ -74,8 +74,8 @@ export const logout = () => async (dispatch) => {
     return response;
   };
 
-export const editProfile = (username, email, hashedPassword) => async dispatch => {
-  const res = await csrfFetch(`/api/session`, {
+export const editProfile = ( id, username, email, hashedPassword) => async dispatch => {
+  const res = await csrfFetch(`/api/session/${id}`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({username, email, hashedPassword})
@@ -83,6 +83,8 @@ export const editProfile = (username, email, hashedPassword) => async dispatch =
   if (res.ok){
     const user = await res.json()
     dispatch(edit(user))
+    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+    console.log(user)
     return user
   }
 }
