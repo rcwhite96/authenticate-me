@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 .photo-container{
     display: flex;
     flex-wrap: wrap;
@@ -56,4 +58,10 @@
 
 .add-photo:hover{
     background-color: white;
+}
+
+.desc{
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
 }
