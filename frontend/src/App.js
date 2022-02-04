@@ -16,6 +16,7 @@ import OneNotebookPage from "./components/OneNotebook/OneNotebook"
 import SearchResults from "./components/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
 import GalleryPage from "./components/GalleryPage/GalleryPage";
+import AddPhotoPage from "./components/AddPhotoPage/AddPhotoPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,10 @@ function App() {
           </Route>
           <Route path= '/gallery' exact={true}>
             <GalleryPage/>
+            <Footer/>
+          </Route>
+          <Route path= '/gallery/new-photo' exact={true}>
+            <AddPhotoPage/>
             <Footer/>
           </Route>
         </Switch>

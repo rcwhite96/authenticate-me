@@ -45,7 +45,7 @@ function GalleryPage(){
         <h2 className="notebook_title">My Gallery</h2>
         <p className="desc">Add photos of your project, inspiration, etc</p>
         <div className="button-container">
-            <NavLink to="/new-photo" className="add-photo">
+            <NavLink to="/gallery/new-photo" className="add-photo">
                         Add a Photo
             </NavLink>
         </div>
