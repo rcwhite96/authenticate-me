@@ -8,7 +8,6 @@ import './GalleryPage.css'
 function GalleryPage(){
     const sessionUser = useSelector((state => state.session.user))
     const galleryPhotos = useSelector(state => state.gallery.gallery)
-    console.log(galleryPhotos)
     const dispatch = useDispatch()
 
     const imgs = galleryPhotos?.map((galleryPhoto, index) =>
@@ -16,7 +15,7 @@ function GalleryPage(){
             <div className="image-container">
                 <img className="project-image" src={galleryPhoto.imageURL} alt="media-img"/>
                 <div className="button-container">
-                    <NavLink to={`/edit-photo/${galleryPhoto.id}`} className='edit-photo-link'>Edit</NavLink>
+                    <NavLink to={`/gallery/edit-photo/${galleryPhoto.id}`} className='edit-photo-link'>Edit</NavLink>
                     <button onClick={() => handleDelete(galleryPhoto.id)} className='edit-photo-link'>
                         Delete
                     </button>
@@ -26,9 +25,7 @@ function GalleryPage(){
     )
 
     useEffect(() => {
-
         dispatch(getGallery())
-
     }, [dispatch])
 
     if (!sessionUser) {
@@ -43,7 +40,7 @@ function GalleryPage(){
         <>
 
         <h2 className="notebook_title">My Gallery</h2>
-        <p className="desc">Add photos of your project, inspiration, etc</p>
+        <p className="desc">Add photos of your projects, inspiration, etc.</p>
         <div className="button-container">
             <NavLink to="/gallery/new-photo" className="add-photo">
                         Add a Photo

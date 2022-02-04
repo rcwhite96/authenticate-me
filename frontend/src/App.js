@@ -17,6 +17,7 @@ import SearchResults from "./components/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
 import GalleryPage from "./components/GalleryPage/GalleryPage";
 import AddPhotoPage from "./components/AddPhotoPage/AddPhotoPage";
+import EditPhotoPage from './components/EditPhotoPage/EditPhotoPage'
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,10 @@ function App() {
           </Route>
           <Route path= '/gallery/new-photo' exact={true}>
             <AddPhotoPage/>
+            <Footer/>
+          </Route>
+          <Route path= '/gallery/edit-photo/:photoId' exact={true}>
+            <EditPhotoPage/>
             <Footer/>
           </Route>
         </Switch>
