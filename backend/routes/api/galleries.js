@@ -21,7 +21,9 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     if(!user){
         return next(galleryError('Must be logged in to see your gallery.'))
     }
-    const gallery = await Gallery.findAll()
+    const gallery = await Gallery.findAll({
+        order: [['updatedAt']]
+    })
     return res.json(gallery)
 }))
 

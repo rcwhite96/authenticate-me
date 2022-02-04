@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
-import { addNotebook } from '../../store/notebooks';
+import { addPhoto } from '../../store/galleries';
 
-import './notebookform.css'
+import '../CreateNotebooks/notebookform.css'
 
-const CreateNotebook = () => {
+const AddPhotoPage = () => {
     const sessionUser = useSelector((state => state.session.user))
-    const [title, setTitle] = useState('');
+    const [imageURL, setImageURL] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
@@ -16,11 +16,10 @@ const CreateNotebook = () => {
         return <Redirect to="/login" />;
       }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        const notebook = await dispatch(addNotebook(title)).catch(async (res) => {
+        const notebook = await dispatch(addPhoto(imageURL)).catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
             const filteredErrors = data.errors.filter(
@@ -30,13 +29,13 @@ const CreateNotebook = () => {
           }
         });
         if (notebook) {
-          return history.push('/gallery');
+          return history.push('/notebooks');
         }
       };
 
     return (
         <>
-            <h2 className="edit-notebook-header">Add a Notebook</h2>
+            <h2 className="edit-notebook-header">Add a Photo</h2>
                 <form onSubmit={handleSubmit} className="add-notebook-form">
                 <div className="error-div">
                     <p className="user-form-errors">
@@ -46,16 +45,16 @@ const CreateNotebook = () => {
                     </p>
                  </div>
                     <input
-                        onChange ={(e) => setTitle(e.target.value)}
+                        onChange ={(e) => setImageURL(e.target.value)}
                         name="title"
-                        placeholder="untitled notebook"
-                        value={title}/>
+                        placeholder="Image URL"
+                        value={imageURL}/>
                     <button className='submit-button' type="submit">
-                        Add Notebook
+                        Add
                     </button>
                 </form>
         </>
     )
 }
 
-export default CreateNotebook
+export default AddPhotoPage

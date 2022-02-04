@@ -40,6 +40,36 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        userId: 1,
+        imageURL: 'https://images4-f.ravelrycache.com/uploads/TwinkieChan/815531413/Crochet-Strawberry-Half-Finished-13_medium2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        userId: 1,
+        imageURL: 'https://images4-g.ravelrycache.com/uploads/alisonknits/833756647/PrimaSoft-Trellis-0062_medium2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        userId: 1,
+        imageURL: 'https://images4-f.ravelrycache.com/uploads/Tabisia/831084324/IMG_20220108_121112_medium2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        userId: 1,
+        imageURL: 'https://images4-f.ravelrycache.com/uploads/beccamathilde/830388296/Becca_Parker_-_Boho_Rainbow_Blanket_-_WYS_Bo_Peep_Pure_2_medium2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        userId: 1,
+        imageURL: 'https://images4-g.ravelrycache.com/uploads/CrazyNestLady/818567375/IMG_20201209_213235_medium2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
 
 
     ], {});
