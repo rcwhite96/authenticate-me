@@ -33,3 +33,8 @@ https://github.com/rcwhite96/yarnnotes/wiki/Database-Schema
 8. To seed the database, run the command: npx dotenv sequelize db:seed:all
 
 9. Open a second terminal. In one, go into the backend directory and run npm start. In the other, go into the frontend directory and run npm start. This should start up both servers and open the app in your browser.
+
+## Future Features
+
+- Users can view a single note.
+- Users can add photos/files to their own notes.
