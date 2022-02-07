@@ -38,3 +38,4 @@ https://github.com/rcwhite96/yarnnotes/wiki/Database-Schema
 
 - Users can view a single note.
 - Users can add photos/files to their own notes.
+- Options for more crafts: cross-stitch, embroidery, weaving, etc.
