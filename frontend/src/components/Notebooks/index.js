@@ -13,7 +13,7 @@ function NotebooksList() {
     useEffect(() => {
         dispatch(getAllNotebook())
     }, [dispatch])
-    
+
 
     const handleDelete = (id) => {
         dispatch(deleteNotebook(id));
@@ -28,6 +28,9 @@ function NotebooksList() {
         <>
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
+                <NavLink to="/new-notebook" className="add-notebook">
+                        Add a Notebook
+                    </NavLink>
                     {notebooks && Object.values(notebooks).map(({id, title}) => (
                         <NavLink className="notebooks-links" to={`/notebooks/${id}`} key={id}>
                             {title}
@@ -37,9 +40,6 @@ function NotebooksList() {
                             </button>
                         </NavLink>
                     ))}
-                    <NavLink to="/new-notebook" className="add-notebook">
-                        Add a Notebook
-                    </NavLink>
                 </div>
         </>
     )
