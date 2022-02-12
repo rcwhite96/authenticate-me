@@ -20,7 +20,7 @@
     margin-left: 400px;
     margin-right: 400px;
     margin-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 80px;
     padding-top: 25px;
     background-color: rgb(255, 248, 254, 0.5);
     min-width: 400px;
@@ -44,7 +44,7 @@
 .add-notebook{
     display: flex;
     align-items: center;
-    margin-top: 25px;
+    margin-bottom: 25px;
     background-color: rgb(255, 248, 254);
     border-radius: 5px;
     padding: 10px;

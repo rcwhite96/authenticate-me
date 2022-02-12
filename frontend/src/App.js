@@ -9,7 +9,6 @@ import Navigation from "./components/Navigation";
 import NotebooksList from "./components/Notebooks";
 import CreateNotebook from './components/CreateNotebooks'
 import EditNotebook from './components/EditNotebooks'
-import NotesList from "./components/Notes";
 import CreateNote from "./components/CreateNotes"
 import EditNote from "./components/EditNotes"
 import OneNotebookPage from "./components/OneNotebook/OneNotebook"
@@ -57,10 +56,6 @@ function App() {
           </Route>
           <Route path='/edit-notebook/:notebookId'>
             <EditNotebook/>
-            <Footer/>
-          </Route>
-          <Route path= '/notes'>
-            <NotesList/>
             <Footer/>
           </Route>
           <Route path= '/new-note'>
