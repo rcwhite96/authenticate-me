@@ -28,6 +28,7 @@ function NotesList() {
         <>
             <h2 className="notes_title">Notes</h2>
                 <div className="notes-list">
+                <div className="notebook-div">
                     {notes && Object.values(notes).map(({id, title, hookSize, needleSize, yarn, description}) => (
                         <div className="notes-links" to={`/notes/${id}`} key={id}>
                             <div className="title">
@@ -54,6 +55,7 @@ function NotesList() {
                     <NavLink to="/new-note" className="add-note">
                         Add a Note
                     </NavLink>
+                    </div>
                 </div>
         </>
     )

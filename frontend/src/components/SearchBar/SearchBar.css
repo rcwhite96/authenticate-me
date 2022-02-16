@@ -40,3 +40,11 @@
 .search-btn:hover{
     background-color: rgb(255, 255, 255);
 }
+
+
+/* @media screen and (min-width: 375px) {
+    .search-container {
+        display:flex;
+        margin: 0px;
+    }
+} */

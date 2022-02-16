@@ -28,6 +28,7 @@ function NotebooksList() {
         <>
             <h2 className="notebook_title">Notebooks</h2>
                 <div className="notebook-list">
+                <div className="notebook-div">
                 <NavLink to="/new-notebook" className="add-notebook">
                         Add a Notebook
                     </NavLink>
@@ -40,6 +41,7 @@ function NotebooksList() {
                             </button>
                         </NavLink>
                     ))}
+                    </div>
                 </div>
         </>
     )

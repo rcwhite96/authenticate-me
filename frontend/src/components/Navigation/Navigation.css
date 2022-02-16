@@ -29,6 +29,7 @@ a:hover{
       max-width: 320px;
 
   }
+
   .profile-button{
     appearance: auto;
     color: none;
@@ -72,3 +73,5 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
+
+

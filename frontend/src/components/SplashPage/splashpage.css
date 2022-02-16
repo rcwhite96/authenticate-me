@@ -3,18 +3,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 200px;
-    margin-right: 70px;
+    padding-top: 10%;
     flex-direction: column;
 }
 
 .splash-logo{
-    max-width: 1000px;
-
+    max-width: 70%;
 }
 
 .h2{
-    margin: 0px 0px 0px 200px;
+    margin: 0px 0px 0px 220px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-size: 150%;
 }
