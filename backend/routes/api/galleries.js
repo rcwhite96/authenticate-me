@@ -27,8 +27,16 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     return res.json(gallery)
 }))
 
+const validateGallery = [
+  check('imageURL')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('You must add an image URL to post a photo.'),
+  handleValidationErrors,
+];
 
-router.post('/', restoreUser, asyncHandler(async (req, res, next) =>{
+
+router.post('/', restoreUser, validateGallery, asyncHandler(async (req, res, next) =>{
     const{imageURL} = req.body
     const{user}= req
     if(!user){
@@ -38,7 +46,7 @@ router.post('/', restoreUser, asyncHandler(async (req, res, next) =>{
     return res.json(newPhoto)
 }))
 
-router.put('/:id(\\d+)', restoreUser, asyncHandler(async (req, res, next) => {
+router.put('/:id(\\d+)', restoreUser, validateGallery, asyncHandler(async (req, res, next) => {
   const galleryUpdate = await Gallery.findByPk(req.params.id)
   const {imageURL} = req.body
   const { user } = req;
